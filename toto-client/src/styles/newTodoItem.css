@@ -1,0 +1,7 @@
+.new-todo-container {
+    padding: 20px 40px;
+    
+}
+.new-todo-container button.todo-button{
+    margin-left: 0;
+}

@@ -1,0 +1,15 @@
+div.todo-container{
+    background-color: #fff;
+    padding-left: 0;
+    padding-right: 0;
+margin-top: 40px;
+
+box-shadow: 0 10px 30px rgba(79,172, 254,0.25);
+border-radius: 10px;
+
+}
+
+.todo-list-container {
+    padding: 0 40px 30px;
+
+}

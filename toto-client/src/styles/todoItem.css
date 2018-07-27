@@ -1,0 +1,41 @@
+.todo-item-container{
+  display: flex;
+  align-items: center;
+    margin-bottom: 10px;
+}
+
+.todo-description-container{
+    flex-grow: 1;
+}
+.todo-item-title{
+    font-size: 18px;
+    font-weight: 800;
+    margin-left: 10px;
+}
+
+.todo-priority {
+color: #fff;
+font-size: 12px;
+padding: 2px 8px;
+position: relative;
+top: -2px;
+border-radius: 10px;
+margin-left: 5px;
+
+}
+.todo-priority.priority-low{
+background-color: #a7d5fe;    
+}
+.todo-priority.priority-medium{
+    background-color: #77befe;
+    
+}
+.todo-priority.priority-high{
+    background-color:#0b87f6;
+}
+
+div.todo-item-status{
+    width: auto;
+}
+
+
