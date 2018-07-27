@@ -1,0 +1,9 @@
+.shareCarApp-item-container {
+    background-color: antiquewhite;
+    height: 5vh;
+    margin: 5px;
+}
+
+.shareCarApp-item-container span, button {
+    margin: 15px;
+}
