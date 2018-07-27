@@ -1,8 +1,8 @@
 //@flow
 import React, { Component } from 'react';
 import './App.css';
+import { LoginPageLayout } from "./components/Layouts/LoginPageLayout";
 import { MainLayout } from "./components/Layouts/MainLayout";
-import { TripViewLayout } from "./components/Layouts/TripViewLayout";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 
 class App extends Component<{}> {
@@ -12,8 +12,8 @@ class App extends Component<{}> {
         <Router>
           <div>
             <Route exact path = "/" component={MainLayout}></Route>
-            <Route path="/trip_view" component={TripViewLayout}></Route>
-          </div>
+            <Route path="/login" component={LoginPageLayout}></Route>
+        </div>
         </Router>
       </div>
     );
