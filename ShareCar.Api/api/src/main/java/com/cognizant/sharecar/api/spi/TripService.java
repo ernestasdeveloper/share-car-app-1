@@ -3,7 +3,7 @@ package com.cognizant.sharecar.api.spi;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
-import com.cognizant.sharecar.api.model.request.UpdateTripQuery;
+import com.cognizant.sharecar.api.model.request.UpdateTripRequest;
 
 import java.util.List;
 
@@ -15,5 +15,5 @@ public interface TripService {
 
     Long add(AddTripRequest request);
 
-    void update(Long id, UpdateTripQuery updateTripQuery);
+    void update(Long id, UpdateTripRequest updateTripQuery);
 }
