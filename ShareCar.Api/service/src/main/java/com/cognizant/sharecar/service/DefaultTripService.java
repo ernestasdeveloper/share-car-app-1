@@ -3,7 +3,7 @@ package com.cognizant.sharecar.service;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
-import com.cognizant.sharecar.api.model.request.UpdateTripQuery;
+import com.cognizant.sharecar.api.model.request.UpdateTripRequest;
 import com.cognizant.sharecar.api.spi.TripService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Trip;
@@ -64,10 +64,9 @@ public class DefaultTripService implements TripService {
     }
 
     @Override
-    public void update(Long id, UpdateTripQuery updateTripQuery) {
-        final TripStatus status = updateTripQuery.getStatus();
-        final Trip trip = tripRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Trip with id " + id + " was not found"));
+    public void update(Long id, UpdateTripRequest updateTripRequest) {
+        final TripStatus status = updateTripRequest.getStatus();
+        final Trip trip = tripRepository.getOne(id);
 
         if(status != null)
             trip.setStatus(status);

@@ -3,7 +3,7 @@ package com.cognizant.sharecar.api.resource;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
-import com.cognizant.sharecar.api.model.request.UpdateTripQuery;
+import com.cognizant.sharecar.api.model.request.UpdateTripRequest;
 import com.cognizant.sharecar.api.model.response.AddTripResponse;
 import com.cognizant.sharecar.api.model.response.GetTripResponse;
 import com.cognizant.sharecar.api.spi.TripService;
@@ -56,8 +56,8 @@ public class TripApi{
 
     @PutMapping(path = "/{id}")
     public ResponseEntity update(@PathVariable(name = "id") Long id,
-                                 @RequestBody UpdateTripQuery updateTripQuery){
-        tripService.update(id, updateTripQuery);
+                                 @RequestBody UpdateTripRequest updateTripRequest){
+        tripService.update(id, updateTripRequest);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

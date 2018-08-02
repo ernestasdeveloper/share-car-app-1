@@ -2,6 +2,7 @@ package com.cognizant.sharecar.service;
 
 import com.cognizant.sharecar.api.model.dto.UserView;
 import com.cognizant.sharecar.api.model.request.AddUserRequest;
+import com.cognizant.sharecar.api.model.request.UpdateUserRequest;
 import com.cognizant.sharecar.api.spi.UserService;
 import com.cognizant.sharecar.repository.entity.User;
 import com.cognizant.sharecar.repository.spi.UserRepository;
@@ -33,5 +34,15 @@ public class DefaultUserService implements UserService {
                 request.getEmail(),
                 request.getPhoneNo());
         return userRepository.save(userEntity).getId();
+    }
+
+    @Override
+    public void update(Long id, UpdateUserRequest updateUserRequest) {
+        final User user = userRepository.getOne(id);
+        user.setFirstName(updateUserRequest.getFirstName());
+        user.setLastName(updateUserRequest.getLastName());
+        user.setEmail(updateUserRequest.getEmail());
+        user.setPhoneNo(updateUserRequest.getPhoneNo());
+        userRepository.save(user);
     }
 }
