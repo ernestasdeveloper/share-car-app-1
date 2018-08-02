@@ -2,7 +2,6 @@
 import * as React from "react";
 import { NavBar } from "../NavigationBar/NavBar";
 import { UserService } from "../../api/UserService";
-import { UserContainer } from "../User/UserContainer"; 
 
 type ProfilePageLayoutProps = {
     userService: UserService,
@@ -11,7 +10,7 @@ type ProfilePageLayoutProps = {
 
 type ProfilePageLayoutState = {
     isLoading: boolean,
-    user: User[]
+    user: User
 }
 
 export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, ProfilePageLayoutState> {
@@ -20,9 +19,8 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
         user: []
     };
     async componentDidMount() {
-        console.log("date " + this.props.match.params.date);
-        const data = await this.props.userService.getAll(this.props.match.params.date);
-        await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+        const data = await this.props.userService.getSingle(this.props.match.params.id);
+        await new Promise(resolve => setTimeout(resolve, 1000));
         this.setState({isLoading: false, user: data});
     }
     render() {
@@ -30,10 +28,14 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
             <div>
                 <NavBar/>
                 <div>
-                    {this.state.user.map((x, i)=>
-                    <UserContainer key={i}
-                    user={x}
-                    />)}
+            <div>
+                {this.state.user.firstName}
+            </div>
+            <div>
+            {this.state.user.lastName}
+            </div>
+                <div>{this.state.user.email}</div>
+                <div>{this.state.user.phoneNo}</div>
                 </div>
             </div>
         );

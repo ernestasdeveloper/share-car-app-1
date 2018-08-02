@@ -9,7 +9,7 @@ const buildUrl = (path: string) => API_URL + path;
 export class RestUserService implements UserService {
 
     async getSingle(userId: UserId): Promise<User> {
-        const data: ApiResponse<User> = await fetchData("GET", buildUrl("/profile/" + userId));
+        const data: ApiResponse<User> = await fetchData("GET", buildUrl("/users/" + userId));
         if (data.isError) {
             throw new Error();
         }

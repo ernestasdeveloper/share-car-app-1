@@ -28,8 +28,7 @@ class App extends Component<{}> {
                         <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="new_trip" exact path="/trips/new" component={() => <TripAddLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="trips" path="/trips/:date?" render={props => <TripListLayout {...props} tripService={TRIP_SERVICE}/>}/>
-                        <Route name="trip_details" exact path="/trips/details" component={() => <TripDetailsLayout tripService={TRIP_SERVICE}/>}/>
-                        <Route name="profile" path="/profile/:id?" render={props => <ProfilePageLayout userService={USER_SERVICE}/>}/>
+                        <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props} userService={USER_SERVICE}/>}/>
                     </Switch>
                 </Router>
             </div>
