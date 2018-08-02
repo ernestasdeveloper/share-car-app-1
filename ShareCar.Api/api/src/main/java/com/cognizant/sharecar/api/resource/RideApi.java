@@ -31,9 +31,9 @@ public class RideApi {
 
     @GetMapping
     public ResponseEntity<List<GetRideLazyResponse>> getAll(@RequestParam(required = false) RideStatus status,
-                                                            @RequestParam(required = false) Long passenger_id,
-                                                            @RequestParam(required = false) Long trip_id) {
-        List<LazyRideView> rides = rideService.getAll(new GetAllRidesQuery(status, passenger_id, trip_id));
+                                                            @RequestParam(required = false) Long passengerId,
+                                                            @RequestParam(required = false) Long tripId) {
+        List<LazyRideView> rides = rideService.getAll(new GetAllRidesQuery(status, passengerId, tripId));
         List<GetRideLazyResponse> responses = rides.stream()
                 .map(GetRideLazyResponse::new)
                 .collect(toList());

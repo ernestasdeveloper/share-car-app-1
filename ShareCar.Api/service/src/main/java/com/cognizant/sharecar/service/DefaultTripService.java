@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -26,11 +24,12 @@ import static java.util.stream.Collectors.toList;
 public class DefaultTripService implements TripService {
 
     private final TripRepository tripRepository;
-    private final TripSpecifications spec = new TripSpecifications();
+    private final TripSpecifications spec;
 
     @Autowired
-    public DefaultTripService(TripRepository tripRepository) {
+    public DefaultTripService(TripRepository tripRepository, TripSpecifications spec) {
         this.tripRepository = tripRepository;
+        this.spec = spec;
     }
 
     @Override
