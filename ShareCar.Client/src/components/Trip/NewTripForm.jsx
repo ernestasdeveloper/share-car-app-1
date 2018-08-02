@@ -8,7 +8,7 @@ type NewTripFormProps = {
     tripService: TripService
 };
 type NewTripFormState = {
-    selectedDay: Date
+    selectedDate: Date
 };
 
 
