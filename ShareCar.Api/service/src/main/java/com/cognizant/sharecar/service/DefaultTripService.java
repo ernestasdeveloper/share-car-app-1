@@ -3,7 +3,7 @@ package com.cognizant.sharecar.service;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
-import com.cognizant.sharecar.api.model.request.UpdateTripQuery;
+import com.cognizant.sharecar.api.model.request.UpdateTripRequest;
 import com.cognizant.sharecar.api.spi.TripService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Trip;
@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -26,11 +24,12 @@ import static java.util.stream.Collectors.toList;
 public class DefaultTripService implements TripService {
 
     private final TripRepository tripRepository;
-    private final TripSpecifications spec = new TripSpecifications();
+    private final TripSpecifications spec;
 
     @Autowired
-    public DefaultTripService(TripRepository tripRepository) {
+    public DefaultTripService(TripRepository tripRepository, TripSpecifications spec) {
         this.tripRepository = tripRepository;
+        this.spec = spec;
     }
 
     @Override
@@ -65,10 +64,9 @@ public class DefaultTripService implements TripService {
     }
 
     @Override
-    public void update(Long id, UpdateTripQuery updateTripQuery) {
-        final TripStatus status = updateTripQuery.getStatus();
-        final Trip trip = tripRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Trip with id " + id + " was not found"));
+    public void update(Long id, UpdateTripRequest updateTripRequest) {
+        final TripStatus status = updateTripRequest.getStatus();
+        final Trip trip = tripRepository.getOne(id);
 
         if(status != null)
             trip.setStatus(status);

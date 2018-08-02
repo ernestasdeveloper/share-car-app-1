@@ -9,15 +9,14 @@ import com.cognizant.sharecar.common.spi.model.RideStatus;
 import com.cognizant.sharecar.repository.entity.Ride;
 import com.cognizant.sharecar.repository.entity.Trip;
 import com.cognizant.sharecar.repository.entity.User;
+import com.cognizant.sharecar.repository.specifications.RideSpecifications;
 import com.cognizant.sharecar.repository.spi.RideRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
-import com.cognizant.sharecar.service.exception.NotImplementedException;
 import com.cognizant.sharecar.service.utils.RideMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -25,10 +24,12 @@ import static java.util.stream.Collectors.toList;
 public class DefaultRideService implements RideService {
 
     private final RideRepository rideRepository;
+    private final RideSpecifications spec;
 
     @Autowired
-    public DefaultRideService(RideRepository rideRepository) {
+    public DefaultRideService(RideRepository rideRepository, RideSpecifications spec) {
         this.rideRepository = rideRepository;
+        this.spec = spec;
     }
 
     @Override
@@ -44,15 +45,10 @@ public class DefaultRideService implements RideService {
         final Long passengerId = getAllQuery.getPassengerId();
         final Long tripId = getAllQuery.getTripId();
 
-        List<Ride> rides;
-
-        if (status == null && passengerId == null && tripId == null) {
-            rides = rideRepository.findAll();
-        }
-        else {
-            throw new NotImplementedException();
-        }
-        return rides.stream()
+        return rideRepository.findAll(spec.ridesFilteredByStatus(status)
+                .and(spec.ridesFilteredByPassengerId(passengerId))
+                .and(spec.ridesFilteredByTripId(tripId)))
+                .stream()
                 .map(RideMapper::mapEntityToLazyView)
                 .collect(toList());
     }
