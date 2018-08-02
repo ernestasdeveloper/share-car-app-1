@@ -2,6 +2,7 @@
 import * as React from "react";
 import { NavBar } from "../NavigationBar/NavBar";
 import { UserService } from "../../api/UserService";
+import "../../styles/profilePageLayout.css"
 
 type ProfilePageLayoutProps = {
     userService: UserService,
@@ -27,15 +28,34 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
         return (
             <div>
                 <NavBar/>
-                <div>
-            <div>
-                {this.state.user.firstName}
-            </div>
-            <div>
-            {this.state.user.lastName}
-            </div>
-                <div>{this.state.user.email}</div>
-                <div>{this.state.user.phoneNo}</div>
+                <div className="profile-container">
+                <div className="profile-item-profile">
+                        Profile
+                    </div>
+                    <div className="profile-item profile-item-a">
+                        Vardas:
+                    </div>
+                    <div className="profile-item profile-item-b">
+                    {this.state.user.firstName}
+                    </div>
+                    <div className="profile-item profile-item-c">
+                        Pavarde:
+                    </div>
+                    <div className="profile-item profile-item-d">
+                    {this.state.user.lastName}
+                    </div>
+                    <div className="profile-item profile-item-e">
+                        Pastas:
+                    </div>
+                    <div className="profile-item profile-item-f">
+                    {this.state.user.email}
+                    </div>
+                    <div className="profile-item profile-item-g">
+                        Telefonas:
+                    </div>
+                    <div className="profile-item profile-item-h">
+                    {this.state.user.phoneNo}
+                    </div>
                 </div>
             </div>
         );
