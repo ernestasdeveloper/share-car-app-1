@@ -1,0 +1,61 @@
+.profile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "profile profile"
+    "fname userfname"
+    "lname userlname"
+    "email useremail"
+    "phonenr userphonenr";
+    background-color: white;
+    border-radius: 5px;
+}
+
+.profile-item {
+    padding: 8% 10%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3vh;
+    border-bottom-style: solid;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-width: 3%;
+    border-bottom-color: grey;
+}
+.profile-item-profile {
+    padding: 3% 10%;
+    grid-area: profile;
+    text-align: center;
+    font-weight: bold;
+    font-size: 4vh;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom-color: black;
+    border-style: solid;
+    border-width: 5%;
+}
+
+.profile-item-a {
+    grid-area: fname;
+}
+.profile-item-b {
+    grid-area: userfname;
+}
+.profile-item-c {
+    grid-area: lname;
+}
+.profile-item-d {
+    grid-area: userlname;
+}
+.profile-item-e {
+    grid-area: email;
+}
+.profile-item-f {
+    grid-area: useremail;
+}
+.profile-item-g {
+    grid-area: phonenr;
+}
+.profile-item-h {
+    grid-area: userphonenr;
+}
