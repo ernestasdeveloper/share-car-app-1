@@ -3,10 +3,12 @@ package com.cognizant.sharecar.repository.specifications;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Trip;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Component
 public class TripSpecifications{
 
     public Specification<Trip> tripsFilteredByStatus(TripStatus status) {
