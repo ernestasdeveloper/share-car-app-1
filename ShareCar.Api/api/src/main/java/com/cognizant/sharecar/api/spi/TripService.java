@@ -15,5 +15,5 @@ public interface TripService {
 
     Long add(AddTripRequest request);
 
-    void update(Long id, UpdateTripRequest updateTripQuery);
+    void patch(Long id, UpdateTripRequest updateTripRequest);
 }

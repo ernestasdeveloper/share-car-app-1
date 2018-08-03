@@ -54,10 +54,10 @@ public class TripApi{
         }
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity update(@PathVariable(name = "id") Long id,
-                                 @RequestBody UpdateTripRequest updateTripRequest){
-        tripService.update(id, updateTripRequest);
+    @PatchMapping(path = "/{id}")
+    public ResponseEntity patch(@PathVariable(name = "id") Long id,
+                                @RequestBody UpdateTripRequest updateTripRequest){
+        tripService.patch(id, updateTripRequest);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

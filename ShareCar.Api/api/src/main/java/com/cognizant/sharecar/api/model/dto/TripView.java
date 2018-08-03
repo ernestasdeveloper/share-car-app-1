@@ -3,7 +3,6 @@ package com.cognizant.sharecar.api.model.dto;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.hateoas.Identifiable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

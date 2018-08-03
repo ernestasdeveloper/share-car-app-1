@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -64,12 +65,18 @@ public class DefaultTripService implements TripService {
     }
 
     @Override
-    public void update(Long id, UpdateTripRequest updateTripRequest) {
+    public void patch(Long id, UpdateTripRequest updateTripRequest) {
         final TripStatus status = updateTripRequest.getStatus();
+        final LocalDateTime dateTime = updateTripRequest.getDateTime();
+        final String route = updateTripRequest.getRoute();
         final Trip trip = tripRepository.getOne(id);
 
         if(status != null)
             trip.setStatus(status);
+        if(dateTime != null)
+            trip.setDateTime(dateTime);
+        if(route != null)
+            trip.setRoute(route);
 
         tripRepository.save(trip);
     }
