@@ -6,7 +6,7 @@ type MainLayoutProps = {
     toRender: React.Component<>;
 }
 
-export class MainLayout extends React.Component<{}> {
+export class MainLayout extends React.Component<MainLayoutProps> {
     render() {
         const ToRender = this.props.toRender;
         return (
