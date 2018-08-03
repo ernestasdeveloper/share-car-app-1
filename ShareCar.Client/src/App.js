@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import "./App.css";
 import {MainLayout} from "./components/layouts/MainLayout";
 import {TripListLayout} from "./components/layouts/TripListLayout";
-import {TripAddLayout} from "./components/layouts/TripAddLayout";
+import {AddTripLayout} from "./components/layouts/AddTripLayout";
 import {TripDetailsLayout} from "./components/layouts/TripDetailsLayout";
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {RestTripService} from "./api/RestTripService";
@@ -26,7 +26,7 @@ class App extends Component<{}> {
                         <Route name="main" exact path="/" component={MainLayout}/>
                         <Route name="trip_details" exact path="/trips/details/:id" component={props => <TripDetailsLayout {...props} tripService={TRIP_SERVICE}/>}/>
                         <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
-                        <Route name="new_trip" exact path="/trips/new" component={() => <TripAddLayout tripService={TRIP_SERVICE}/>}/>
+                        <Route name="new_trip" exact path="/trips/new" component={() => <MainLayout toRender={ AddTripLayout }/>}/>
                         <Route name="trips" path="/trips/:date?" render={props => <TripListLayout {...props} tripService={TRIP_SERVICE}/>}/>
                         <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props} userService={USER_SERVICE}/>}/>
                     </Switch>
