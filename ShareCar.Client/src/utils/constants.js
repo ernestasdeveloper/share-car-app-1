@@ -13,3 +13,17 @@ export const RideStatusValues = {
     RIDE_SUCCESSFUL: "RIDE_SUCCESSFUL", 
     RIDE_REMOVED: "RIDE_REMOVED"
 };
+
+export const MapApiStatusCodeValues = {
+    Ok: "Ok",
+    InvalidUrl: "InvalidUrl",
+    InvalidService: "InvalidService",
+    InvalidVersion: "InvalidVersion",
+    InvalidOptions: "InvalidOptions",
+    InvalidQuery: "InvalidQuery",
+    InvalidValue: "InvalidValue",
+    NoSegment: "NoSegemnt",
+    TooBig: "TooBig"
+}
+
+export const MapApiRouteStatusCodeValues = MapApiStatusCodeValues & {NoRoute: "NoRoute"};
