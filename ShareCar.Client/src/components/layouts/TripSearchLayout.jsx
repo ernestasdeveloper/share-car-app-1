@@ -17,7 +17,7 @@ export class TripSearchLayout extends React.Component<TripSearchLayoutProps> {
             <div>
                 <NavBar/>
                 <TripSearchForm tripService={this.props.tripService}/>
-                <Link to="/trips"><button>View all</button></Link>
+                
             </div>
         );
     }

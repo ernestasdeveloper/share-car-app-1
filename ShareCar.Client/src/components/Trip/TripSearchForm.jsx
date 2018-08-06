@@ -5,6 +5,7 @@ import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { Link } from "react-router-dom";
 import "../../styles/TripSearchForm.css";
+import "../../styles/genericStyles.css";
 
 type TripSearchFormProps = {
     tripService: TripService
@@ -44,7 +45,8 @@ export class TripSearchForm extends React.Component<TripSearchFormProps, TripSea
                     onDayClick={this.handleDayClick.bind(this)}
                 />
                 { console.log("selectedDay sliced "+ this.state.selectedDay.toISOString().slice(0, 10)) }
-                <Link to={"/trips/" + this.state.selectedDay.toISOString().slice(0, 10)}><button>Search</button></Link>
+                <Link to={"/trips/" + this.state.selectedDay.toISOString().slice(0, 10)}><button className="gen-button">Search</button></Link>
+                <Link to="/trips"><button className="gen-button">View all</button></Link>
             </div>
             // </form>
         );
