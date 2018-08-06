@@ -12,21 +12,114 @@ import "../styles/map.css";
 import "ol/ol.css";
 import {RestMapService} from "../api/RestMapService";
 
+type MapLayoutState = {
+    waypoints: Waypoint[]
+}
+
 export class MapLayout extends React.Component<{}> {
     map: Map;
 
+    points: any[];
+    msg_el: element;
+    url_osrm_route: string;
+    icon_url: string;
+    vectorSource: Vector;
+    vectorLayer: VectorLayer;
+    styles: {
+        route: any;
+        icon: any;
+    }
+
+    mapService = new RestMapService();
+
+    to4326(coord) {
+        return transform([
+            parseFloat(coord[0]), parseFloat(coord[1])
+        ], "EPSG:3857", "EPSG:4326");
+    }
+    getNearest(coord) {
+        let coord4326 = this.to4326(coord);
+        return this.mapService.getNearestLocation(coord4326);
+    }
+    createFeature(coord) {
+        let feature = new Feature({
+            type: "place",
+            geometry: new Point(fromLonLat(coord))
+        });
+        feature.setStyle(this.styles.icon);
+        this.vectorSource.addFeature(feature);
+    }
+
+    handleClick(evt) {
+        this.getNearest(evt.coordinate).then(function (coord_street) {
+            let last_point = this.points[this.points.length - 1];
+            let points_length = this.points.push(coord_street);
+
+           this.createFeature(coord_street);
+
+            if (points_length < 2) {
+                this.msg_el.innerHTML = "Click to add another point";
+                return;
+            }
+
+            //get the route
+            let point1 = last_point.join();
+            let point2 = coord_street.join();
+
+            // utils.createRoute(mapService.getRouteGeometry(point1, point2));
+
+            this.updateWaypoints(point1, point2);
+        });
+    }
+
+    createRoute(polyline: Geometry) {
+        // route is LineString
+        let route = new Polyline({
+            factor: 1e5
+        }).readGeometry(polyline, {
+            dataProjection: "EPSG:4326",
+            featureProjection: "EPSG:3857"
+        });
+        let feature = new Feature({
+            type: "route",
+            geometry: route
+        });
+        //console.log(polyline);
+        feature.setStyle(this.styles.route);
+        this.vectorSource.addFeature(feature);
+    }
+
+    async updateWaypoints(point1: Coord4326, point2: Coord4326) {
+        const data = await this.mapService.getRouteGeometry(point1, point2);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        let waypoints = this.state.waypoints;
+        waypoints.add(point1);
+        waypoints.add(point2);
+        this.setState({waypoints: waypoints});
+        this.createRoute(data);
+
+        // try {
+        //     let response = await mapService.getRouteGeometry(point1, point2);
+        //     utils.createRoute(response));
+        //     msg_el.innerHTML = "Route added";
+        // }
+        // catch(error) {
+        //      msg_el.innerHTML = "No route found.";
+        // }
+    };
+
     componentDidMount() {
 
-        const points = [];
-        const msg_el = document.getElementById("msg");
+        this.points = [];
+        this.msg_el = document.getElementById("msg");
         // const url_osrm_nearest = "//localhost:5000/nearest/v1/driving/";
-        const url_osrm_route = "//cts-maps.northeurope.cloudapp.azure.com:5000/route/v1/driving/";
-        const icon_url = "//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png";
-        const vectorSource = new Vector();
-        const vectorLayer = new VectorLayer({
-            source: vectorSource
+        this.url_osrm_route = "//router.project-osrm.org/route/v1/driving/";
+        this.icon_url = "//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png";
+        this.vectorSource = new Vector();
+        this.vectorLayer = new VectorLayer({
+            source: this.vectorSource
         });
-        const styles = {
+        this.styles = {
             route: new Style({
                 stroke: new Stroke({
                     width: 6, color: [40, 40, 40, 0.8]
@@ -35,50 +128,9 @@ export class MapLayout extends React.Component<{}> {
             icon: new Style({
                 image: new Icon({
                     anchor: [0.5, 1],
-                    src: icon_url
+                    src: this.icon_url
                 })
             })
-        };
-
-        // console.clear();
-
-        const mapService = new RestMapService();
-
-
-        const utils = {
-            getNearest: function (coord) {
-                let coord4326 = utils.to4326(coord);
-                return mapService.getNearestLocation(coord4326);
-            },
-            createFeature: function (coord) {
-                let feature = new Feature({
-                    type: "place",
-                    geometry: new Point(fromLonLat(coord))
-                });
-                feature.setStyle(styles.icon);
-                vectorSource.addFeature(feature);
-            },
-            createRoute: function (polyline) {
-                // route is LineString
-                let route = new Polyline({
-                    factor: 1e5
-                }).readGeometry(polyline, {
-                    dataProjection: "EPSG:4326",
-                    featureProjection: "EPSG:3857"
-                });
-                let feature = new Feature({
-                    type: "route",
-                    geometry: route
-                });
-                //console.log(polyline);
-                feature.setStyle(styles.route);
-                vectorSource.addFeature(feature);
-            },
-            to4326: function (coord) {
-                return transform([
-                    parseFloat(coord[0]), parseFloat(coord[1])
-                ], "EPSG:3857", "EPSG:4326");
-            }
         };
 
         this.map = new Map({
@@ -87,7 +139,7 @@ export class MapLayout extends React.Component<{}> {
                 new Tile({
                     source: new OSM()
                 }),
-                vectorLayer
+                this.vectorLayer
             ],
             view: new View({
                 center: fromLonLat([25.272932, 54.679042]),
@@ -96,48 +148,7 @@ export class MapLayout extends React.Component<{}> {
             })
         });
 
-        this.map.on("click", function (evt) {
-            utils.getNearest(evt.coordinate).then(function (coord_street) {
-                let last_point = points[points.length - 1];
-                let points_length = points.push(coord_street);
-
-                utils.createFeature(coord_street);
-
-                if (points_length < 2) {
-                    msg_el.innerHTML = "Click to add another point";
-                    return;
-                }
-
-                //get the route
-                let point1 = last_point.join();
-                let point2 = coord_street.join();
-
-                // utils.createRoute(mapService.getRouteGeometry(point1, point2));
-
-                // try {
-                //     let response = await mapService.getRouteGeometry(point1, point2);
-                //     utils.createRoute(response));
-                //     msg_el.innerHTML = "Route added";
-                // }
-                // catch(error) {
-                //     msg_el.innerHTML = "No route found.";
-                // }
-
-                fetch(url_osrm_route + point1 + ";" + point2).then(function (r) {
-                    return r.json();
-                }).then(function (json) {
-                    if (json.code !== "Ok") {
-                        console.log(json.code);
-                        msg_el.innerHTML = "No route found.";
-                        return;
-                    }
-                    msg_el.innerHTML = "Route added";
-                    //points.length = 0;
-                    console.log(json.routes[0].geometry);
-                    utils.createRoute(json.routes[0].geometry);
-                });
-            });
-        });
+        this.map.on("click", this.handleClick.bind(this));
     }
 
     render() {
