@@ -4,7 +4,7 @@ import { fetchData } from "../utils/apiUtils";
 import {MapService} from "./MapService";
 import {MapApiStatusCodeValues, MapApiRouteStatusCodeValues} from "../utils/constants";
 
-const API_URL = "http://localhost:5000";
+const API_URL = "http://cts-maps.northeurope.cloudapp.azure.com:5000";
 
 const buildUrl = (path: string) => API_URL + path;
 
