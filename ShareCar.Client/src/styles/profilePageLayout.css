@@ -15,13 +15,14 @@
 .profile-item {
     padding: 8% 10%;
     font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     border-bottom-style: solid;
     border-top-style: none;
     border-left-style: none;
     border-right-style: none;
     border-width: 3%;
     border-bottom-color: grey;
+    place-self: center stretch;
 }
 .profile-item-profile {
     padding: 3% 10%;

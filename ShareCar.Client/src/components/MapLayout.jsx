@@ -20,7 +20,7 @@ export class MapLayout extends React.Component<{}> {
         const points = [];
         const msg_el = document.getElementById("msg");
         // const url_osrm_nearest = "//localhost:5000/nearest/v1/driving/";
-        const url_osrm_route = "//cts-maps.northeurope.cloudapp.azure.com:5000/route/v1/driving/";
+        const url_osrm_route = "//cts-maps.northeurope.cloudapp.azure.com/route/v1/driving/";
         const icon_url = "//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png";
         const vectorSource = new Vector();
         const vectorLayer = new VectorLayer({

@@ -5,6 +5,9 @@ import {TripService} from "../../api/TripService";
 import "../../styles/TripContainer.css";
 import Moment from "react-moment";
 import { RestRideService } from "../../api/RestRideService";
+import "../../styles/genericStyles.css";
+import "../../styles/tripDetails.css";
+import "../../styles/tripDetails.css";
 
 type TripDetailsLayoutProps = {
     tripService: TripService,
@@ -42,7 +45,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
     }
 
     render() {
-        if (this.state.isLoading) return (<div><NavBar/><div>Loading</div></div>);
+        if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt">Loading</div></div>);
         else { 
             return (
                 <div>
@@ -70,25 +73,31 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                 </tbody>
                             </table>
                         </div>
-                        <div className="driver-details-lazy">
-                            <div>{this.state.trip.driver.id}</div>
-                            <div>{this.state.trip.driver.firstName}</div>
-                            <div>{this.state.trip.driver.lastName}</div>
-                            <div>{this.state.trip.driver.email}</div>
-                            <div>{this.state.trip.driver.phoneNo}</div>
-                        </div>
-                        <form id="passengerId-debug" onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="details-container">
+                            <div className="details-item-dinfo">Driver info</div>
+                            <div className="details-item details-item-did">Driver id</div>
+                            <div className="details-item details-item-tdid">{this.state.trip.driver.id}</div>
+                            <div className="details-item details-item-a">Vardas</div>
+                            <div className="details-item details-item-b">{this.state.trip.driver.firstName}</div>
+                            <div className="details-item details-item-c">Pavarde</div>
+                            <div className="details-item details-item-d">{this.state.trip.driver.lastName}</div>
+                            <div className="details-item details-item-g">Telefonas</div>
+                            <div className="details-item details-item-h">{this.state.trip.driver.phoneNo}</div>
+                        
+                        <form className="details-container-form" id="passengerId-debug" onSubmit={this.handleSubmit.bind(this)}>
                             {/*BEGIN passengerId field for debugging*/}
-                            <div className="form-group">
-                                <label htmlFor="passengerId">passengerId</label>
-                                <input type="text" className="form-control" name="passengerId"/>
-                            </div>
+                           
+                                <label htmlFor="passengerId" className="details-item details-item-p">passengerId</label>
+                                <input type="text" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
+                          
                             {/*END*/}
-                            <div className="trip-details-actions">
-                                <button className="btn btn-primary">Rides</button>
-                                <button className="btn btn-primary">Request</button>
-                            </div>
+                
+                                <button className="details-item details-item-ride gen-button">Rides</button>
+                                <button className="details-item details-item-request gen-button">Request</button>
+                            
+                            
                         </form>
+                        </div>
                     </div>
                 </div>
             );

@@ -1,0 +1,93 @@
+.details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "dinfo dinfo"
+    "driverid thisdriverid"
+    "fname userfname"
+    "lname userlname"
+    "phonenr userphonenr"
+    "form form";
+    background-color: lightgrey;
+    border-radius: 5px;
+}
+
+.details-item {
+    padding: 5% 8%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    border-bottom-style: solid;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-width: 3%;
+    border-bottom-color: grey;
+    place-self: center stretch;
+    margin: 0;
+}
+
+.details-item-dinfo {
+    padding: 3% 8%;
+    grid-area: dinfo;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    border-bottom-color: black;
+    border-style: solid;
+    border-width: 5%;
+}
+
+.details-item-did {
+    grid-area: driverid;
+}
+
+.details-item-tdid {
+    grid-area: thisdriverid;
+}
+
+.details-item-a {
+    grid-area: fname;
+}
+.details-item-b {
+    grid-area: userfname;
+}
+.details-item-c {
+    grid-area: lname;
+}
+.details-item-d {
+    grid-area: userlname;
+}
+
+.details-item-g {
+    grid-area: phonenr;
+}
+.details-item-h {
+    grid-area: userphonenr;
+}
+
+.details-item-p {
+    grid-area: pinfo;
+}
+.details-item-pi {
+    grid-area: pinfoinput;
+}
+
+.details-item-rides {
+    grid-area: rides;
+}
+.details-item-request {
+    grid-area: request;
+}
+
+.details-container-form {
+    grid-area: form;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "pinfo pinfoinput"
+    "rides request";
+    background-color: transparent;
+}
