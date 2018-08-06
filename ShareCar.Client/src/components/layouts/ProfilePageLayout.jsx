@@ -2,7 +2,8 @@
 import * as React from "react";
 import { NavBar } from "../NavigationBar/NavBar";
 import { UserService } from "../../api/UserService";
-import "../../styles/profilePageLayout.css"
+import "../../styles/profilePageLayout.css";
+import "../../styles/genericStyles.css";
 
 type ProfilePageLayoutProps = {
     userService: UserService,
@@ -56,6 +57,7 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
                     <div className="profile-item profile-item-h">
                     {this.state.user.phoneNo}
                     </div>
+                        <button className="profile-item-btn profile-item gen-button">Edit</button>
                 </div>
             </div>
         );

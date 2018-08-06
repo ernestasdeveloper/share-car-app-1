@@ -4,6 +4,7 @@ import {NavBar} from "../NavigationBar/NavBar";
 import {TripService} from "../../api/TripService";
 import {TripContainer} from "../Trip/TripContainer";
 import "../../styles/TripContainer.css";
+import "../../styles/genericStyles.css";
 
 type TripListLayoutProps = {
     tripService: TripService,

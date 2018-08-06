@@ -7,7 +7,8 @@
     "fname userfname"
     "lname userlname"
     "email useremail"
-    "phonenr userphonenr";
+    "phonenr userphonenr"
+    "editbtn editbtn";
     background-color: rgb(233, 233, 233);
     border-radius: 5px;
     overflow: hidden;
@@ -18,7 +19,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 17px;
     padding: 5px;
-    place-self: center stretch;
+
 }
 .profile-item-profile {
     padding: 3% 10%;
@@ -54,4 +55,9 @@
 }
 .profile-item-h {
     grid-area: userphonenr;
+}
+.profile-item-btn {
+    grid-area: editbtn;
+    align-self: center;
+    justify-self: center;
 }

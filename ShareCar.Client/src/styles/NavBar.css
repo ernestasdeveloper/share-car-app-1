@@ -4,7 +4,8 @@
 
 .bottom-navbar {
     overflow: hidden;
-    position: fixed;
+    position: fixed !important;
+    z-index: 10000;
     bottom: 0;
     width: 100%;
     display: flex;
