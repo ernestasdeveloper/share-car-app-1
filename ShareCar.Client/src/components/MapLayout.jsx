@@ -114,6 +114,15 @@ export class MapLayout extends React.Component<{}> {
 
                 // utils.createRoute(mapService.getRouteGeometry(point1, point2));
 
+                // try {
+                //     let response = await mapService.getRouteGeometry(point1, point2);
+                //     utils.createRoute(response));
+                //     msg_el.innerHTML = "Route added";
+                // }
+                // catch(error) {
+                //     msg_el.innerHTML = "No route found.";
+                // }
+
                 fetch(url_osrm_route + point1 + ";" + point2).then(function (r) {
                     return r.json();
                 }).then(function (json) {
