@@ -2,9 +2,9 @@
 
 import { fetchData } from "../utils/apiUtils";
 import {MapService} from "./MapService";
-import {MapApiStatusCodeValues, MapApiRouteStatusCodeValues} from "../utils/constants";
+import {MapApiStatusCodeValues} from "../utils/constants";
 
-const API_URL = "http://router.project-osrm.org";
+const API_URL = "http://localhost:5000";
 
 const buildUrl = (path: string) => API_URL + path;
 
@@ -14,17 +14,18 @@ export class RestMapService implements MapService {
         if (data.isError || data.value.code !== MapApiStatusCodeValues.Ok) {
             throw new Error(); // TODO: better error handling
         }
-        console.log("Waypoint " + data.value.waypoints[0].location);
+        // console.log("Waypoint " + data.value.waypoints[0].location);
         return data.value.waypoints[0].location;
     }
 
     async getRouteGeometry(coord1: Coord4326, coord2: Coord4326): Promise<Geometry> {
-        console.log("URL " + buildUrl("/route/v1/driving/" + coord1 + ";" + coord2));
+        // console.log("URL " + buildUrl("/route/v1/driving/" + coord1 + ";" + coord2));
         const data: ApiResponse<GetRouteResponse> = await fetchData("GET", buildUrl("/route/v1/driving/" + coord1 + ";" + coord2));
-        console.log("value code " + data.value.code);
-        if (data.isError || data.value.code !== MapApiRouteStatusCodeValues.Ok) {
+        // console.log(MapApiRouteStatusCodeValues);
+        if (data.isError || data.value.code !== MapApiStatusCodeValues.Ok) {
             throw new Error();
         }
+        // console.log("geometry (service side) " + data.value.routes[0].geometry);
         return data.value.routes[0].geometry;
     }
 }

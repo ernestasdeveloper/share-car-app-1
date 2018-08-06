@@ -13,13 +13,17 @@ import "ol/ol.css";
 import {RestMapService} from "../api/RestMapService";
 
 type MapLayoutState = {
-    waypoints: Waypoint[]
+    points: any[];
 }
 
-export class MapLayout extends React.Component<{}> {
+export class MapLayout extends React.Component<{}, MapLayoutState> {
     map: Map;
 
-    points: any[];
+    state = {
+        points: []
+    };
+
+    // points: any[];
     msg_el: element;
     url_osrm_route: string;
     icon_url: string;
@@ -51,13 +55,24 @@ export class MapLayout extends React.Component<{}> {
     }
 
     handleClick(evt) {
-        this.getNearest(evt.coordinate).then(function (coord_street) {
-            let last_point = this.points[this.points.length - 1];
-            let points_length = this.points.push(coord_street);
+        if (this.state.points.length >= 2) {
+            // this.msg_el.innerHTML = "";
+            return;
+        }
+        this.getNearest(evt.coordinate).then(coord_street => {
 
-           this.createFeature(coord_street);
+            let last_point = this.state.points[this.state.points.length - 1];
+            let points_length = this.state.points.push(coord_street);
 
-            if (points_length < 2) {
+            if (points_length)
+
+            this.createFeature(coord_street);
+
+            // console.log("inside handleClick points_length " + points_length);
+            if (points_length === 2) {
+                this.msg_el.innerHTML = "";
+            }
+            else if (points_length < 2) {
                 this.msg_el.innerHTML = "Click to add another point";
                 return;
             }
@@ -69,6 +84,8 @@ export class MapLayout extends React.Component<{}> {
             // utils.createRoute(mapService.getRouteGeometry(point1, point2));
 
             this.updateWaypoints(point1, point2);
+
+            // console.log("inside handleClick points " + this.state.points);
         });
     }
 
@@ -92,10 +109,10 @@ export class MapLayout extends React.Component<{}> {
     async updateWaypoints(point1: Coord4326, point2: Coord4326) {
         const data = await this.mapService.getRouteGeometry(point1, point2);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        let waypoints = this.state.waypoints;
-        waypoints.add(point1);
-        waypoints.add(point2);
-        this.setState({waypoints: waypoints});
+        // let waypoints = this.state.waypoints;
+        // waypoints.add(point1);
+        // waypoints.add(point2);
+        // this.setState({waypoints: waypoints});
         this.createRoute(data);
 
         // try {
@@ -110,10 +127,10 @@ export class MapLayout extends React.Component<{}> {
 
     componentDidMount() {
 
-        this.points = [];
+        // this.points = [];
         this.msg_el = document.getElementById("msg");
         // const url_osrm_nearest = "//localhost:5000/nearest/v1/driving/";
-        this.url_osrm_route = "//router.project-osrm.org/route/v1/driving/";
+        this.url_osrm_route = "//localhost:5000/maps/route/v1/driving/";
         this.icon_url = "//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png";
         this.vectorSource = new Vector();
         this.vectorLayer = new VectorLayer({
