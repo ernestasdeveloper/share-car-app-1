@@ -2,6 +2,7 @@
 import * as React from "react";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
+import "../../styles/genericStyles.css";
 
 type AddTripDatesTimesFormProps = {
     fieldValues: {
@@ -42,20 +43,21 @@ export class AddTripDatesTimesForm extends React.Component<AddTripDatesTimesForm
     }
     render() {
         return(
-            <form id="add-trip-dates-times-form" onSubmit={this.saveAndContinue.bind(this)}>
-                <DayPicker
+            <form className="gen-flex-column-container" id="add-trip-dates-times-form" onSubmit={this.saveAndContinue.bind(this)}>
+                <DayPicker 
+                    className="gen-flex-column-item"
                     selectedDays={this.state.selectedDate}
                     onDayClick={this.handleDayClick.bind(this)}
                 />
-                <div className="form-group">
+                <div className="form-group gen-flex-column-item">
                     <label htmlFor="timeOfDay">Time</label>
                     <input type="text" className="form-control" name="timeOfDay" defaultValue="08:00"/>
                 </div>
-                <div className="form-group">
+                <div className="form-group gen-flex-column-item">
                     <label htmlFor="driverId">DriverId</label>
                     <input type="number" className="form-control" name="driverId"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Next</button>
+                <button type="submit" className="gen-button">Next</button>
             </form>
         );
     }

@@ -1,6 +1,6 @@
 .profile-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
     grid-template-areas:
     "profile profile"
@@ -8,20 +8,16 @@
     "lname userlname"
     "email useremail"
     "phonenr userphonenr";
-    background-color: white;
+    background-color: rgb(233, 233, 233);
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .profile-item {
-    padding: 8% 10%;
+    padding: auto;
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    border-bottom-style: solid;
-    border-top-style: none;
-    border-left-style: none;
-    border-right-style: none;
-    border-width: 3%;
-    border-bottom-color: grey;
+    font-size: 17px;
+    padding: 5px;
     place-self: center stretch;
 }
 .profile-item-profile {
@@ -31,9 +27,8 @@
     font-weight: bold;
     font-size: 4vh;
     font-family: 'Open Sans', sans-serif;
-    border-bottom-color: black;
-    border-style: solid;
-    border-width: 5%;
+    background-color: black;
+    color: white;
 }
 
 .profile-item-a {

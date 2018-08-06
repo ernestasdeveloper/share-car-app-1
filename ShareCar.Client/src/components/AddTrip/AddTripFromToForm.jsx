@@ -2,6 +2,7 @@
 import * as React from "react";
 import DayPicker from "react-day-picker";
 import "react-day-picker/lib/style.css";
+import "../../styles/genericStyles.css";
 
 type AddTripFromToFormProps = {
     fieldValues: {
@@ -38,12 +39,12 @@ export class AddTripFromToForm extends React.Component<AddTripFromToFormProps> {
     }
     render() {
         return(
-            <form id="add-trip-from-to-form" onSubmit={this.saveAndContinue.bind(this)}>
-                <div className="form-group">
+            <form className="gen-flex-column-container" id="add-trip-from-to-form" onSubmit={this.saveAndContinue.bind(this)}>
+                <div className="form-group gen-flex-column-item">
                     <label htmlFor="route">Route</label>
                     <input type="text" className="form-control" name="route"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Next</button>
+                <button type="submit" className="gen-flex-column-item gen-button">Next</button>
             </form>
         );
     }

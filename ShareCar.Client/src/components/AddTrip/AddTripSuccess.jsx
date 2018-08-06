@@ -13,9 +13,9 @@ type AddTripSuccessProps = {
 export class AddTripSuccess extends React.Component<AddTripSuccessProps> {
     render() {
         return (
-            <div>
-                <div>Your trip has been created!</div>
-                <div>{this.props.fieldValues.route}</div>
+            <div className="gen-flex-column-container">
+                <div className="gen-flex-column-item">Your trip has been created!</div>
+                <div className="gen-flex-column-item">{this.props.fieldValues.route}</div>
             </div>
         );
     }

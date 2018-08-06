@@ -88,7 +88,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                             {/*BEGIN passengerId field for debugging*/}
                            
                                 <label htmlFor="passengerId" className="details-item details-item-p">passengerId</label>
-                                <input type="text" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
+                                <input type="text" placeholder="input passengerid" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
                           
                             {/*END*/}
                 
