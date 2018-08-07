@@ -15,6 +15,12 @@ public class Trip {
     private Long id;
 
     private String route;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name="start_point_id")
+    private Waypoint startPoint;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name="end_point_id")
+    private Waypoint endPoint;
     private TripStatus status;
     private LocalDateTime dateTime;
     @ManyToOne
@@ -30,11 +36,13 @@ public class Trip {
         this.id = id;
     }
 
-    public Trip(String route, TripStatus status, LocalDateTime dateTime, User driver) {
+    public Trip(String route, TripStatus status, LocalDateTime dateTime, User driver, Waypoint startPoint, Waypoint endPoint) {
         this.route = route;
         this.status = status;
         this.dateTime = dateTime;
         this.driver = driver;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
     }
 
     public Long getId() {
@@ -51,6 +59,22 @@ public class Trip {
 
     public void setRoute(String route) {
         this.route = route;
+    }
+
+    public Waypoint getStartPoint() {
+        return startPoint;
+    }
+
+    public void setStartPoint(Waypoint startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public Waypoint getEndPoint() {
+        return endPoint;
+    }
+
+    public void setEndPoint(Waypoint endPoint) {
+        this.endPoint = endPoint;
     }
 
     public TripStatus getStatus() {

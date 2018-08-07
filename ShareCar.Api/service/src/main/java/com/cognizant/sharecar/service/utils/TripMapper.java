@@ -18,6 +18,8 @@ public class TripMapper {
                         trip.getDriver().getFirstName(),
                         trip.getDriver().getLastName(),
                         trip.getDriver().getPhoneNo()),
+                WaypointMapper.mapEntityToView(trip.getStartPoint()),
+                WaypointMapper.mapEntityToView(trip.getEndPoint()),
                 trip.getRides()
                         .stream()
                         .map(Ride::getId)

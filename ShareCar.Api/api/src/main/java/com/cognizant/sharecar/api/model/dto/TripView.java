@@ -17,17 +17,22 @@ public class TripView{
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateTime;
     private LazyUserView driver;
+    private WaypointView startPoint;
+    private WaypointView endPoint;
     private List<Long> rideIdList = new ArrayList<>();
 
     public TripView() {
     }
 
-    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, LazyUserView driver, List<Long> rideIdList) {
+    public TripView(Long id, String route, TripStatus status, LocalDateTime dateTime, LazyUserView driver,
+                    WaypointView startPoint, WaypointView endPoint, List<Long> rideIdList) {
         this.id = id;
         this.route = route;
         this.status = status;
         this.dateTime = dateTime;
         this.driver = driver;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
         this.rideIdList = rideIdList;
     }
 
@@ -69,6 +74,14 @@ public class TripView{
 
     public void setDriver(LazyUserView driver) {
         this.driver = driver;
+    }
+
+    public WaypointView getStartPoint() {
+        return startPoint;
+    }
+
+    public WaypointView getEndPoint() {
+        return endPoint;
     }
 
     public List<Long> getRideIdList() {

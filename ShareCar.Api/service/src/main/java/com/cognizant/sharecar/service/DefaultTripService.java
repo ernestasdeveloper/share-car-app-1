@@ -12,6 +12,7 @@ import com.cognizant.sharecar.repository.specifications.TripSpecifications;
 import com.cognizant.sharecar.repository.spi.TripRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
 import com.cognizant.sharecar.service.utils.TripMapper;
+import com.cognizant.sharecar.service.utils.WaypointMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +60,9 @@ public class DefaultTripService implements TripService {
         final Trip tripEntity = new Trip(request.getRoute(),
                 TripStatus.SCHEDULED,
                 request.getDateTime(),
-                new User(request.getDriverId())
+                new User(request.getDriverId()),
+                WaypointMapper.mapViewToEntity(request.getStartPoint()),
+                WaypointMapper.mapViewToEntity(request.getEndPoint())
         );
         return tripRepository.save(tripEntity).getId();
     }
