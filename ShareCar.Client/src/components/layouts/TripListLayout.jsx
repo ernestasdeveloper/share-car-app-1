@@ -32,14 +32,14 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
         return (
             <div>
                 <NavBar/>
-                <div className="trip-container">
+                <div className="trip-container gen-container">
 
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col" className="trip-description">Route</th>
-                                <th scope="col"className="trip-description">Time</th>
-                                <th scope="col"className="trip-description">Driver</th>
+                                <th scope="col" className="trip-description sticky-header">Route</th>
+                                <th scope="col"className="trip-description sticky-header">Time</th>
+                                <th scope="col"className="trip-description sticky-header">Driver</th>
                             </tr>
                         </thead>
                         <tbody>

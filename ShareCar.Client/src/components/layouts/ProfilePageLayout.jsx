@@ -1,5 +1,6 @@
 //@flow
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { NavBar } from "../NavigationBar/NavBar";
 import { UserService } from "../../api/UserService";
 import "../../styles/profilePageLayout.css";
@@ -29,35 +30,20 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
         return (
             <div>
                 <NavBar/>
-                <div className="profile-container">
+                <div className="profile-container gen-container">
                 <div className="profile-item-profile">
                         Profile
                     </div>
-                    <div className="profile-item profile-item-a">
-                        Vardas:
+                    <div className="profile-item">
+                    {this.state.user.firstName} {this.state.user.lastName}
                     </div>
-                    <div className="profile-item profile-item-b">
-                    {this.state.user.firstName}
-                    </div>
-                    <div className="profile-item profile-item-c">
-                        Pavarde:
-                    </div>
-                    <div className="profile-item profile-item-d">
-                    {this.state.user.lastName}
-                    </div>
-                    <div className="profile-item profile-item-e">
-                        Pastas:
-                    </div>
-                    <div className="profile-item profile-item-f">
+                    <div className="profile-item">
                     {this.state.user.email}
                     </div>
-                    <div className="profile-item profile-item-g">
-                        Telefonas:
-                    </div>
-                    <div className="profile-item profile-item-h">
+                    <div className="profile-item">
                     {this.state.user.phoneNo}
                     </div>
-                        <button className="profile-item-btn profile-item gen-button">Edit</button>
+                        <Link to={"/profile/edit/" + this.state.user.id} className="profile-item" ><button className="gen-button">Edit</button></Link>
                 </div>
             </div>
         );
