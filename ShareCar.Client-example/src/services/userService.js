@@ -4,7 +4,7 @@ import api from '../helpers/axiosHelper';
 class UserService {
 
     getLoggedInUser = (callback: User => void) => {
-        api.get('user')
+        api.get('principal/info')
         .then((response) => {
             callback((response.data: User));
         })

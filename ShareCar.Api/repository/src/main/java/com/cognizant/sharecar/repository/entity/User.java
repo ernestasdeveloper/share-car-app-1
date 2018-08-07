@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.repository.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,9 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "business_id", unique = true)
+    private String fbId;
 
     private String firstName;
     private String lastName;
@@ -92,5 +96,13 @@ public class User {
 
     public void setRides(List<Ride> rides) {
         this.rides = rides;
+    }
+
+    public String getFbId() {
+        return fbId;
+    }
+
+    public void setFbId(String fbId) {
+        this.fbId = fbId;
     }
 }

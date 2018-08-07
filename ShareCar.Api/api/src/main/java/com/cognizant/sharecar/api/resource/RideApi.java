@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.api.resource;
 
+import com.cognizant.sharecar.api.model.exception.InternalServerException;
 import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.api.model.response.*;
 import com.cognizant.sharecar.api.model.dto.LazyRideView;

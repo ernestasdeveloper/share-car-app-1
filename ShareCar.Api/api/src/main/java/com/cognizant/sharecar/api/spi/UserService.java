@@ -11,4 +11,6 @@ public interface UserService {
     Long add(AddUserRequest request);
 
     void update(Long id, UpdateUserRequest updateUserRequest);
+
+    UserView getLoggedInUser();
 }
