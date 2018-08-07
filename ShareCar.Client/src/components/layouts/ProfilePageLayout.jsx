@@ -29,7 +29,7 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
         return (
             <div>
                 <NavBar/>
-                <div className="profile-container">
+                <div className="profile-container gen-container">
                 <div className="profile-item-profile">
                         Profile
                     </div>

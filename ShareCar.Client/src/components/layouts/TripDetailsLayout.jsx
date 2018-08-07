@@ -50,7 +50,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
             return (
                 <div>
                     <NavBar/>
-                    <div className="trip-details-container">
+                    <div className="trip-details-container gen-container">
                         <div className="trip-details">
                             <table className="table">
                                 <tbody>

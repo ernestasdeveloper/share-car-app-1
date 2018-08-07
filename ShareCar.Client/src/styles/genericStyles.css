@@ -7,6 +7,10 @@
     text-align: center;
 }
 
+.gen-container {
+    margin-bottom: 13%;
+}
+
 .gen-button {
     font-family: 'Lato', sans-serif;
     justify-content: center;
