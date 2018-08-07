@@ -22,3 +22,9 @@
 .ol-control button:hover{
     background-color: rgba(40, 40, 40, 1) !important;
 }
+.map-button {
+    position: absolute;
+    z-index: 20;
+    left: 2%;
+    bottom: 7%;
+}

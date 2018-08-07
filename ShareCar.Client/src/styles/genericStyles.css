@@ -16,6 +16,7 @@
     border-radius: 5px;
     border-color: transparent;
     margin: 5px;
+    padding: 5px 10px;
 }
 
 .gen-button:hover {

@@ -5,6 +5,7 @@ import {AddTripDatesTimesForm} from "../AddTrip/AddTripDatesTimesForm";
 import {AddTripSuccess} from "../AddTrip/AddTripSuccess";
 import {AddTripConfirmation} from "../AddTrip/AddTripConfirmation";
 import {AddTripFromToForm} from "../AddTrip/AddTripFromToForm";
+import {MapLayout} from "../MapLayout";
 
 type AddTripLayoutProps = {
 
@@ -15,7 +16,9 @@ type AddTripLayoutState = {
     fieldValues: {
         route: string,
         dateTime: string,
-        driverId: UserId
+        driverId: UserId,
+        toOffice: boolean,
+        office: string
     };
 }
 
@@ -26,7 +29,9 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
         fieldValues: {
             route: null,
             dateTime: null,
-            driverId: null
+            driverId: null,
+            toOffice: true,
+            office: null
         }
     };
 
@@ -35,7 +40,9 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
             fieldValues: {
                 route: fields.route,
                 dateTime: fields.dateTime,
-                driverId: fields.driverId
+                driverId: fields.driverId,
+                toOffice: fields.toOffice,
+                office: fields.office
             }
         });
     };
@@ -72,10 +79,15 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
                                           previousStep={this.previousStep.bind(this)}
                                           saveValues={this.saveValues.bind(this)}/>
             case 3:
+                return <MapLayout fieldValues={this.state.fieldValues}
+                                    nextStep={this.nextStep.bind(this)}
+                                    previousStep={this.previousStep.bind(this)}
+                                    saveValues={this.saveValues.bind(this)}/>
+            case 4:
                 return <AddTripConfirmation fieldValues={this.state.fieldValues}
                                             previousStep={this.previousStep.bind(this)}
                                             submitTrip={this.submitTrip.bind(this)}/>
-            case 4:
+            case 5:
                 return <AddTripSuccess fieldValues={this.state.fieldValues}/>
         }
     }

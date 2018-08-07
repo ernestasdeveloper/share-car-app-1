@@ -23,7 +23,11 @@ export const MapApiStatusCodeValues = {
     InvalidQuery: "InvalidQuery",
     InvalidValue: "InvalidValue",
     NoSegment: "NoSegemnt",
-    TooBig: "TooBig"
-}
+    TooBig: "TooBig",
+    NoRoute: "NoRoute"
+};
 
-export const MapApiRouteStatusCodeValues = MapApiStatusCodeValues & {NoRoute: "NoRoute"};
+export const Offices = {
+    savanoriu_pr_16: "savanoriu-pr-16",
+    savanoriu_pr_28: "savanoriu-pr-28"
+};

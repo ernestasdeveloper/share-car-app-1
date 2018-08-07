@@ -28,3 +28,5 @@ type Leg = {
     summary: string,
     weight: number
 }
+
+type Office = $Keys<typeof Offices>;
