@@ -1,0 +1,40 @@
+jwt:
+  secret: 9EC451D5EA36EED39469FDC07EA3588A2D482915D661F926B59ABF6E91B8886F
+  issuer: share-car-app
+
+facebook:
+  apiUrl: graph.facebook.com
+  version: v2.9
+  appId: 599580833757975
+  appSecret: 94bc799d9fc55fe428f67f404b2a39e7
+
+
+server:
+    port: 8080
+    servlet:
+      context-path: /
+
+spring:
+  datasource:
+    url: jdbc:h2:file:~/share-car-app-db
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: true
+        format_sql: true
+
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
