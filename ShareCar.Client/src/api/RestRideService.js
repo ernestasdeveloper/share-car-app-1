@@ -2,7 +2,7 @@
 import { RideService } from "./RideService";
 import { fetchData } from "../utils/apiUtils";
 
-const API_URL = "http://localhost:9001/api";
+const API_URL = "http://localhost:8080/api";
 
 const buildUrl = (path: string) => API_URL + path;
 
