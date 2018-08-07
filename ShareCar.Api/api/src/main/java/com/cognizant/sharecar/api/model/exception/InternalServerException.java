@@ -1,4 +1,4 @@
-package com.cognizant.sharecar.api.resource;
+package com.cognizant.sharecar.api.model.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
