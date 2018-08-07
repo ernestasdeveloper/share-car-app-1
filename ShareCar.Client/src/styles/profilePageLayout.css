@@ -1,17 +1,9 @@
 .profile-container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "profile profile"
-    "fname userfname"
-    "lname userlname"
-    "email useremail"
-    "phonenr userphonenr"
-    "editbtn editbtn";
+    display: flex;
     background-color: rgb(233, 233, 233);
     border-radius: 5px;
     overflow: hidden;
+    flex-direction: column;
 }
 
 .profile-item {
@@ -19,11 +11,12 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 17px;
     padding: 5px;
+    flex: 1;
+    align-self: center;
 
 }
 .profile-item-profile {
     padding: 3% 10%;
-    grid-area: profile;
     text-align: center;
     font-weight: bold;
     font-size: 4vh;
@@ -32,32 +25,66 @@
     color: white;
 }
 
-.profile-item-a {
+.edit-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "edit edit"
+    "fname userfname"
+    "lname userlname"
+    "email useremail"
+    "phonenr userphonenr"
+    "submitbtn submitbtn";
+    background-color: rgb(233, 233, 233);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.edit-item {
+    padding: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    padding: 5px;
+
+}
+.edit-item-title {
+    padding: 3% 10%;
+    grid-area: edit;
+    text-align: center;
+    font-weight: bold;
+    font-size: 4vh;
+    font-family: 'Open Sans', sans-serif;
+    background-color: black;
+    color: white;
+}
+
+.edit-item-a {
     grid-area: fname;
 }
-.profile-item-b {
+.edit-item-b {
     grid-area: userfname;
 }
-.profile-item-c {
+.edit-item-c {
     grid-area: lname;
 }
-.profile-item-d {
+.edit-item-d {
     grid-area: userlname;
 }
-.profile-item-e {
+.edit-item-e {
     grid-area: email;
 }
-.profile-item-f {
+.edit-item-f {
     grid-area: useremail;
 }
-.profile-item-g {
+.edit-item-g {
     grid-area: phonenr;
 }
-.profile-item-h {
+.edit-item-h {
     grid-area: userphonenr;
 }
-.profile-item-btn {
-    grid-area: editbtn;
+.edit-item-btn {
+    grid-area: submitbtn;
     align-self: center;
     justify-self: center;
 }

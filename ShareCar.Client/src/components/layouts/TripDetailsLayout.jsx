@@ -7,7 +7,6 @@ import Moment from "react-moment";
 import { RestRideService } from "../../api/RestRideService";
 import "../../styles/genericStyles.css";
 import "../../styles/tripDetails.css";
-import "../../styles/tripDetails.css";
 
 type TripDetailsLayoutProps = {
     tripService: TripService,
@@ -77,11 +76,11 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                             <div className="details-item-dinfo">Driver info</div>
                             <div className="details-item details-item-did">Driver id</div>
                             <div className="details-item details-item-tdid">{this.state.trip.driver.id}</div>
-                            <div className="details-item details-item-a">Vardas</div>
+                            <div className="details-item details-item-a">First name</div>
                             <div className="details-item details-item-b">{this.state.trip.driver.firstName}</div>
-                            <div className="details-item details-item-c">Pavarde</div>
+                            <div className="details-item details-item-c">Last name</div>
                             <div className="details-item details-item-d">{this.state.trip.driver.lastName}</div>
-                            <div className="details-item details-item-g">Telefonas</div>
+                            <div className="details-item details-item-g">Phone number</div>
                             <div className="details-item details-item-h">{this.state.trip.driver.phoneNo}</div>
                         
                         <form className="details-container-form" id="passengerId-debug" onSubmit={this.handleSubmit.bind(this)}>
