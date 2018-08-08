@@ -34,13 +34,13 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
                 <div className="profile-item-profile">
                         Profile
                     </div>
-                    <div className="profile-item">
+                    <div className="profile-item" id="full-name">
                     {this.state.user.firstName} {this.state.user.lastName}
                     </div>
-                    <div className="profile-item">
+                    <div className="profile-item" id="email">
                     {this.state.user.email}
                     </div>
-                    <div className="profile-item">
+                    <div className="profile-item" id="phone-no">
                     {this.state.user.phoneNo}
                     </div>
                         <Link to={"/profile/edit/" + this.state.user.id} className="profile-item" ><button className="gen-button">Edit</button></Link>
