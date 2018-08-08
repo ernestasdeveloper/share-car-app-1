@@ -15,4 +15,12 @@ export class RestUserService implements UserService {
         }
         return data.value;
     }
+
+    async update(userId: UserId, item: UpdateUserRequest): Promise<string> {
+        const data: ApiResponse<string> = await fetchData("PUT", buildUrl("/users/" + userId), item);
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
 }
