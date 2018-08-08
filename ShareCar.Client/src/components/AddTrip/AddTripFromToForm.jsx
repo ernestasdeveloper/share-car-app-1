@@ -9,12 +9,22 @@ import "jquery";
 
 type AddTripFromToFormProps = {
     fieldValues: {
-        route: string,
+        // route: string,
         dateTime: string,
         driverId: UserId,
         toOffice: boolean,
-        office: Office
-
+        office: Office,
+        geometry: Geometry,
+        startPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        },
+        endPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        }
     },
     nextStep: Function,
     previousStep: Function,
@@ -42,11 +52,14 @@ export class AddTripFromToForm extends React.Component<AddTripFromToFormProps, A
     saveAndContinue(e: any) {
         e.preventDefault();
         const payload = {
-            route: this.props.fieldValues.route,
+            // route: this.props.fieldValues.route,
             dateTime: this.props.fieldValues.dateTime,
             driverId: this.props.fieldValues.driverId,
             toOffice: this.state.toOffice,
-            office: e.target.office.value
+            office: e.target.office.value,
+            geometry: this.props.fieldValues.geometry,
+            startPoint: this.props.fieldValues.startPoint,
+            endPoint: this.props.fieldValues.endPoint
         };
         this.props.saveValues(payload);
         this.props.nextStep();

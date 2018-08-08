@@ -38,6 +38,7 @@ export class RestTripService implements TripService {
     }
 
     async add(item: AddTripRequest): Promise<AddTripResponse> {
+        console.dir(item, {depth: null});
         const data: ApiResponse<AddTripResponse> = await fetchData("POST", buildUrl(`/trips`), item);
         if (data.isError) {
             throw new Error();

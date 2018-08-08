@@ -6,9 +6,22 @@ import "../../styles/genericStyles.css";
 
 type AddTripDatesTimesFormProps = {
     fieldValues: {
-        route: string,
+        // route: string,
         dateTime: string,
-        driverId: UserId
+        driverId: UserId,
+        toOffice: boolean,
+        office: Office,
+        geometry: Geometry,
+        startPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        },
+        endPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        }
     },
     nextStep: Function,
     saveValues: Function
@@ -34,11 +47,14 @@ export class AddTripDatesTimesForm extends React.Component<AddTripDatesTimesForm
         // e.preventDefault();
         this.state.selectedDate.setHours(e.target.hour.value, e.target.minute.value);
         const payload = {
-            route: this.props.fieldValues.route,
+            // route: this.props.fieldValues.route,
             dateTime: this.state.selectedDate.toISOString(),
             driverId: e.target.driverId.value,
             toOffice: this.props.fieldValues.toOffice,
-            office: this.props.fieldValues.office
+            office: this.props.fieldValues.office,
+            geometry: this.props.fieldValues.geometry,
+            startPoint: this.props.fieldValues.startPoint,
+            endPoint: this.props.fieldValues.endPoint
         };
         this.props.saveValues(payload);
         this.props.nextStep();

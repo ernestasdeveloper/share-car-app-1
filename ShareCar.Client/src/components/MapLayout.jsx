@@ -19,7 +19,7 @@ import "ol-geocoder/dist/ol-geocoder.min.css";
 
 type MapLayoutProps = {
     fieldValues: {
-        route: string,
+        // route: string,
         dateTime: string,
         driverId: UserId,
         toOffice: boolean,
@@ -34,7 +34,7 @@ type MapLayoutProps = {
             name: string,
             longitude: number,
             latitude: number
-        },
+        }
     },
     nextStep: Function,
     previousStep: Function,
@@ -88,9 +88,9 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
     officeCoord(office) {
         switch (office) {
             case "savanoriu_pr_16":
-                return fromLonLat([25.255270, 54.676862]);
+                return fromLonLat([25.255483, 54.676937]);
             case "savanoriu_pr_28":
-                return fromLonLat([25.253029, 54.675497]);
+                return fromLonLat([25.252781, 54.675655]);
         }
     }
 
