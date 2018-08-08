@@ -12,7 +12,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
         const ToRender = this.props.toRender;
         return (
             <div>
-                <div className="gen-container">
+                <div>
                 <ToRender/>
                 </div>
                 <NavBar/>

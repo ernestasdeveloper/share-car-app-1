@@ -53,8 +53,8 @@ export class AddTripDatesTimesForm extends React.Component<AddTripDatesTimesForm
                 />
                 <div className="form-group gen-flex-column-item">
                     <label htmlFor="timeOfDay">Time</label>
-                    <div className="container">
-                        <select type="text" className="form-control" name="hour" defaultValue="08">
+                    <div className="container gen-flex-row-container">
+                        <select type="text" className="form-control gen-flex-row-item" name="hour" defaultValue="08">
                             <option value="00">00</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -80,8 +80,8 @@ export class AddTripDatesTimesForm extends React.Component<AddTripDatesTimesForm
                             <option value="22">22</option>
                             <option value="23">23</option>
                         </select>
-                        <div id="separator">:</div>
-                        <select type="text" className="form-control" name="minute" defaultValue="00">
+                        <div id="separator" className="gen-flex-row-item">:</div>
+                        <select type="text" className="form-control gen-flex-row-item" name="minute" defaultValue="00">
                             <option value="00">00</option>
                             <option value="05">05</option>
                             <option value="10">10</option>

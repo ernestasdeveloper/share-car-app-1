@@ -9,6 +9,7 @@ import {Point} from "ol/geom";
 import {Polyline} from "ol/format";
 import {fromLonLat, transform} from "ol/proj";
 import "../styles/map.css";
+import "../styles/genericStyles.css";
 import "ol/ol.css";
 // import "ol-popup/src/ol-popup.css";
 import {RestMapService} from "../api/RestMapService";
@@ -293,7 +294,7 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
     render() {
         return (
             <div>
-                <div id="map"></div>
+                <div className="gen-map-container" id="map"></div>
                 <div id="msg"></div>
                 <div className="map-button"><button type="submit" className="gen-button" onClick={this.saveAndContinue.bind(this)}>Next</button></div>
             </div>

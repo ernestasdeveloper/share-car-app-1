@@ -8,7 +8,11 @@
 }
 
 .gen-container {
-    margin-bottom: 13%;
+   margin-bottom: 14%
+}
+
+.gen-map-container {
+    height: 92% !important;
 }
 
 .gen-button {
@@ -36,6 +40,18 @@
 
 .gen-flex-column-items {
     flex: 1;
+    align-self: center;
+    text-align: center;
+}
+
+.gen-flex-row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.gen-flex-row-item {
+    margin: 5px;
     align-self: center;
     text-align: center;
 }
