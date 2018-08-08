@@ -13,4 +13,5 @@ module api {
     requires spring.hateoas;
     requires jackson.datatype.jsr310;
     requires spring.boot;
+    requires tomcat.embed.core;
 }

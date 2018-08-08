@@ -4,11 +4,11 @@ import api from '../helpers/axiosHelper';
 class AuthenticationService {
 
     loginWithFacebook = (accessToken: AccessToken, callback: () => void) => {
-        api.post('authentication/facebook', {
+        api.post('auth/facebook', {
             accessToken: accessToken
         })
         .then((response) => {
-            if (response.status === 200)
+            if (response.status === 204)
                 callback();
         })
         .catch(function (error) {
@@ -17,9 +17,9 @@ class AuthenticationService {
     }
 
     logout = (callback: () => void) => {
-        api.post('authentication/logout')
+        api.post('auth/logout')
         .then((response) => {
-            if (response.status === 200)
+            if (response.status === 204)
                 callback();
         })
         .catch(function (error) {

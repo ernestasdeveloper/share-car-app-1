@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Component
-public class TripSpecifications{
+public class TripSpecifications {
 
     public Specification<Trip> tripsFilteredByStatus(TripStatus status) {
         return (Specification<Trip>) (root, query, cb) ->{

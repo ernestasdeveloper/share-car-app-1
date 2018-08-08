@@ -6,4 +6,6 @@ module service {
     requires spring.beans;
     requires spring.context;
     requires commons;
+    requires jackson.annotations;
+    requires spring.security.core;
 }

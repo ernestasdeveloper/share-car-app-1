@@ -15,4 +15,6 @@ public interface UserService {
     int countRidesDriven(Long id);
 
     int countRidesTaken(Long id);
+
+    UserView getLoggedInUser();
 }

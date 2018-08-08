@@ -1,5 +1,6 @@
 package com.cognizant.sharecar.api.resource;
 
+import com.cognizant.sharecar.api.model.exception.InternalServerException;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
