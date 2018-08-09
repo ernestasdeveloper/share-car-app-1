@@ -9,8 +9,6 @@ public class GetUserResponse {
     private String lastName;
     private String email;
     private String phoneNo;
-    private int ridesDriven;
-    private int ridesTaken;
 
     public GetUserResponse(UserView user){
         this.id = user.getId();
@@ -38,21 +36,5 @@ public class GetUserResponse {
 
     public String getPhoneNo() {
         return phoneNo;
-    }
-
-    public int getRidesDriven() {
-        return ridesDriven;
-    }
-
-    public void setRidesDriven(int ridesDriven) {
-        this.ridesDriven = ridesDriven;
-    }
-
-    public int getRidesTaken() {
-        return ridesTaken;
-    }
-
-    public void setRidesTaken(int ridesTaken) {
-        this.ridesTaken = ridesTaken;
     }
 }

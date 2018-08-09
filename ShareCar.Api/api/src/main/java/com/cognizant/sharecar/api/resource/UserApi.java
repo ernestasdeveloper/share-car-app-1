@@ -21,10 +21,7 @@ public class UserApi{
     @GetMapping(path = "/{id}")
     public ResponseEntity<GetUserResponse> getOne(@PathVariable(name = "id") Long id) {
         UserView user = userService.getOne(id);
-        GetUserResponse userResponse = new GetUserResponse(user);
-        userResponse.setRidesDriven(userService.countRidesDriven(id));
-        userResponse.setRidesTaken(userService.countRidesTaken(id));
-        return ResponseEntity.ok(userResponse);
+        return ResponseEntity.ok(new GetUserResponse(user));
     }
 
     @PostMapping ResponseEntity<AddUserResponse> add(@RequestBody AddUserRequest userRequest){
