@@ -4,7 +4,6 @@ div.trip-container {
     padding-left: 0;
     padding-right: 0;
     box-shadow: 0 10px 30px rgba(136, 136, 136, 0.356);
-    border-radius: 10px;
     font-family: 'Open Sans', sans-serif;
     flex-direction: column;
 

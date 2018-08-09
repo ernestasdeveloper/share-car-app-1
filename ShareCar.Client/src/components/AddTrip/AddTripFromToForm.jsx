@@ -68,10 +68,10 @@ export class AddTripFromToForm extends React.Component<AddTripFromToFormProps, A
         return(
             <form className="gen-flex-column-container" id="add-trip-from-to-form" onSubmit={this.saveAndContinue.bind(this)}>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons" onChange={this.onToFromOfficeToggle.bind(this)}>
-                    <label className="btn btn-primary">
+                    <label className="btn gen-button">
                         <input type="radio" name="toFromOffice" id="radio1" value="true"/>To office
                     </label>
-                    <label className="btn btn-primary">
+                    <label className="btn gen-button">
                         <input type="radio" name="toFromOffice" id="radio2" value="false"/>From office
                     </label>
                     {/*TODO Highlight selected option*/}

@@ -1,4 +1,8 @@
-.details-container {
+.details-trip-container {
+
+}
+
+.details-driver-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;

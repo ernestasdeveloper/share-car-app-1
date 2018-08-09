@@ -58,8 +58,12 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                         <td>{this.state.trip.id}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Route</th>
-                                        <td>{this.state.trip.route}</td>
+                                        <th scope="row">From</th>
+                                        <td>{this.state.trip.startPoint.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">To</th>
+                                        <td>{this.state.trip.endPoint.name}</td>
                                     </tr>
                                     <tr>
                                         <th schope="row">Date</th>
@@ -72,7 +76,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                 </tbody>
                             </table>
                         </div>
-                        <div className="details-container">
+                        <div className="details-driver-container">
                             <div className="details-item-dinfo">Driver info</div>
                             <div className="details-item details-item-did">Driver id</div>
                             <div className="details-item details-item-tdid">{this.state.trip.driver.id}</div>
