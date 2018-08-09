@@ -8,7 +8,7 @@ public class AddTripRequest {
 
     private String route;
     private LocalDateTime dateTime;
-    private Long driverId;
+//    private Long driverId;
     private WaypointView startPoint;
     private WaypointView endPoint;
 
@@ -23,9 +23,9 @@ public class AddTripRequest {
         return dateTime;
     }
 
-    public Long getDriverId() {
-        return driverId;
-    }
+//    public Long getDriverId() {
+//        return driverId;
+//    }
 
     public WaypointView getStartPoint() {
         return startPoint;

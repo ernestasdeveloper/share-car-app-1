@@ -1,15 +1,18 @@
 package com.cognizant.sharecar.service;
 
 import com.cognizant.sharecar.api.model.dto.TripView;
+import com.cognizant.sharecar.api.model.dto.UserView;
 import com.cognizant.sharecar.api.model.request.AddTripRequest;
 import com.cognizant.sharecar.api.model.request.GetAllTripsQuery;
 import com.cognizant.sharecar.api.model.request.UpdateTripRequest;
 import com.cognizant.sharecar.api.spi.TripService;
+import com.cognizant.sharecar.api.spi.UserService;
 import com.cognizant.sharecar.common.spi.model.TripStatus;
 import com.cognizant.sharecar.repository.entity.Trip;
 import com.cognizant.sharecar.repository.entity.User;
 import com.cognizant.sharecar.repository.specifications.TripSpecifications;
 import com.cognizant.sharecar.repository.spi.TripRepository;
+import com.cognizant.sharecar.repository.spi.UserRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
 import com.cognizant.sharecar.service.utils.TripMapper;
 import com.cognizant.sharecar.service.utils.WaypointMapper;
@@ -27,6 +30,9 @@ public class DefaultTripService implements TripService {
 
     private final TripRepository tripRepository;
     private final TripSpecifications spec;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public DefaultTripService(TripRepository tripRepository, TripSpecifications spec) {
@@ -57,10 +63,11 @@ public class DefaultTripService implements TripService {
 
     @Override
     public Long add(AddTripRequest request) {
+        final UserView loggedInUser = userService.getLoggedInUser();
         final Trip tripEntity = new Trip(request.getRoute(),
                 TripStatus.SCHEDULED,
                 request.getDateTime(),
-                new User(request.getDriverId()),
+                new User(loggedInUser.getId()),
                 WaypointMapper.mapViewToEntity(request.getStartPoint()),
                 WaypointMapper.mapViewToEntity(request.getEndPoint())
         );

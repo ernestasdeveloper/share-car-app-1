@@ -76,11 +76,11 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
         });
     };
 
-    async submitTrip() {
+    submitTrip() {
         const fieldValues = this.state.fieldValues;
         const tripService = new RestTripService();
-        await tripService.add({dateTime: fieldValues.dateTime,
-                                driverId: fieldValues.driverId,
+        tripService.add({dateTime: fieldValues.dateTime,
+                                // driverId: fieldValues.driverId,
                                 route: fieldValues.geometry,
                                 startPoint: fieldValues.startPoint,
                                 endPoint: fieldValues.endPoint

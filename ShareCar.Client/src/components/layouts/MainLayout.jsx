@@ -4,7 +4,7 @@ import { NavBar } from "../NavigationBar/NavBar";
 import "../../styles/genericStyles.css";
 
 type MainLayoutProps = {
-    toRender: React.Component<>;
+    toRender: React.Component<{}>;
 }
 
 export class MainLayout extends React.Component<MainLayoutProps> {

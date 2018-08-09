@@ -1,6 +1,7 @@
 // @flow
 import { TripService } from "./TripService";
 import { fetchData } from "../utils/apiUtils";
+import api from "../helpers/axiosHelper";
 
 const API_URL = "http://localhost:9001/api";
 
@@ -30,16 +31,18 @@ export class RestTripService implements TripService {
     // }
 
     async getSingle(tripId: tripId): Promise<Trip> {
-        const data: ApiResponse<Trip> = await fetchData("GET", buildUrl("/trips/" + tripId));
+        const data: ApiResponse<Trip> = await api.get(buildUrl("/trips" + tripId));
+        // const data: ApiResponse<Trip> = await fetchData("GET", buildUrl("/trips/" + tripId));
         if (data.isError) {
             throw new Error();
         }
         return data.value;
     }
 
-    async add(item: AddTripRequest): Promise<AddTripResponse> {
+    add(item: AddTripRequest): Promise<AddTripResponse> {
         console.dir(item, {depth: null});
-        const data: ApiResponse<AddTripResponse> = await fetchData("POST", buildUrl(`/trips`), item);
+        const data: ApiResponse<AddTripResponse> = api.post(buildUrl("/trips"), item);
+        // const data: ApiResponse<AddTripResponse> = await fetchData("POST", buildUrl(`/trips`), item);
         if (data.isError) {
             throw new Error();
         }

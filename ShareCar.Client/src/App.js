@@ -12,6 +12,8 @@ import { RestUserService } from "./api/RestUserService";
 import { ProfilePageLayout } from "./components/layouts/ProfilePageLayout";
 import { MapLayout } from "./components/MapLayout";
 import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
+import {LoginLayout} from "./components/layouts/LoginLayout";
+import {MyProfileLayout} from "./components/layouts/MyProfileLayout";
 
 
 const TRIP_SERVICE = new RestTripService();
@@ -26,6 +28,8 @@ class App extends Component<{}> {
                         {/*<Route path="/ride_request" component={RideRequestLayout}/>
                         <Route path="/ride_list_pass" component={RideListPassengerLayout}/>*/}
                         <Route name="main" exact path="/" component={MainLayout}/>
+                        <Route name="myprofile" exact path="/myprofile" component={MyProfileLayout}/>
+                        <Route name="login" exact path='/login' component={ LoginLayout } />
                         <Route name="trip_details" exact path="/trips/details/:id" component={props => <TripDetailsLayout {...props} tripService={TRIP_SERVICE}/>}/>
                         <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="new_trip" exact path="/trips/new" component={() => <MainLayout toRender={ AddTripLayout }/>}/>

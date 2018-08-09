@@ -3,7 +3,7 @@
 type AddTripRequest = {
     route: Geometry,
     dateTime: string,
-    driverId: DriverId,
+    // driverId: DriverId,
     startPoint: WaypointView,
     endPoint: WaypointView
 };
