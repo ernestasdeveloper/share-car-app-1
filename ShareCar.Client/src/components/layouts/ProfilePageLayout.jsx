@@ -31,7 +31,7 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
             <div>
                 <NavBar/>
                 <div className="profile-container gen-container">
-                <div className="profile-item-profile">
+                    <div className="profile-item-profile">
                         Profile
                     </div>
                     <div className="profile-item">
@@ -44,6 +44,23 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
                     {this.state.user.phoneNo}
                     </div>
                         <Link to={"/profile/edit/" + this.state.user.id} className="profile-item" ><button className="gen-button">Edit</button></Link>
+                    <div className="profile-stats-container">
+                        <div className="profile-stats-item profile-stats-a">
+                            Statistics:
+                        </div>
+                        <div className="profile-stats-item profile-stats-b">
+                            Rides driven:
+                        </div>
+                        <div className="profile-stats-item profile-stats-c">
+                            {this.state.user.ridesDriven}
+                        </div>
+                        <div className="profile-stats-item profile-stats-d">
+                            Rides taken:
+                        </div>
+                        <div className="profile-stats-item profile-stats-e">
+                            {this.state.user.ridesTaken}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
