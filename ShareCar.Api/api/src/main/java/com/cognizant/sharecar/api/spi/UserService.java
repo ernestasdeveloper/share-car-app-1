@@ -11,4 +11,8 @@ public interface UserService {
     Long add(AddUserRequest request);
 
     void update(Long id, UpdateUserRequest updateUserRequest);
+
+    int countRidesDriven(Long id);
+
+    int countRidesTaken(Long id);
 }
