@@ -12,7 +12,7 @@ public class UserView{
     private String phoneNo;
 
     private List<TripView> trips = new ArrayList<>();
-    private List<LazyRideView> rides = new ArrayList<>();
+    private List<RideView> rides = new ArrayList<>();
 
     public UserView() {
     }
@@ -73,11 +73,11 @@ public class UserView{
         this.trips = trips;
     }
 
-    public List<LazyRideView> getRides() {
+    public List<RideView> getRides() {
         return rides;
     }
 
-    public void setRides(List<LazyRideView> rides) {
+    public void setRides(List<RideView> rides) {
         this.rides = rides;
     }
 }
