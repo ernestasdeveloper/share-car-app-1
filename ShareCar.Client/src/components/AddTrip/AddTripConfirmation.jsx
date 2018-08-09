@@ -49,10 +49,10 @@ export class AddTripConfirmation extends React.Component<AddTripConfirmationProp
         return(
             <div className="gen-flex-column-container">
                 {/*<div className="gen-flex-column-item">{this.props.fieldValues.route}</div>*/}
-                <div className="gen-flex-column-item">
-                    <p>Are you sure you want to schedule your trip {this.destination} for <Moment date={this.props.fieldValues.dateTime} format="D MMMM HH:mm" /></p>
+                <div className="gen-flex-column-item gen-txt-center-imp">
+                    Are you sure you want to schedule your trip {this.destination} for <Moment date={this.props.fieldValues.dateTime} format="D MMMM HH:mm" />?
                 </div>
-                <div className="gen-flex-column-item">{this.props.fieldValues.driverId}</div>
+                <div className="gen-flex-column-item gen-txt-center-imp">Driver ID: {this.props.fieldValues.driverId}</div>
                 <button className="gen-button gen-flex-column-item" onClick={this.props.submitTrip.bind(this)}>Submit</button>
             </div>
         );

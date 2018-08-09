@@ -27,8 +27,9 @@ export class AddTripSuccess extends React.Component<AddTripSuccessProps> {
     render() {
         return (
             <div className="gen-flex-column-container">
-                <div className="gen-flex-column-item">Your trip has been created!</div>
-                <div className="gen-flex-column-item">{this.props.fieldValues.route}</div>
+                <div className="gen-flex-column-item gen-txt-center-imp">Your trip has been created!</div>
+                <div className="gen-flex-column-item gen-txt-center-imp">From: {this.props.fieldValues.startPoint.name}</div>
+                <div className="gen-flex-column-item gen-txt-center-imp">To: {this.props.fieldValues.endPoint.name}</div>
             </div>
         );
     }

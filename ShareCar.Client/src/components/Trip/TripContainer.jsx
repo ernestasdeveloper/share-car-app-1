@@ -29,9 +29,10 @@ export class TripContainer extends React.Component<TripContainerProps, TripConta
         }
         return (
             <tr className="trip-list-container" onClick={this.handleOnClick.bind(this)}>
-                    <td className="trip-route">{this.props.trip.route}</td>
-                    <td className="trip-time"><Moment date={this.props.trip.dateTime} format="HH:mm" /></td>
-                    <td className="trip-driver-name">{this.props.trip.driver.firstName + " " + this.props.trip.driver.lastName}</td>
+                    <td className="trip-text">{this.props.trip.startPoint.name}</td>
+                    <td className="trip-text">{this.props.trip.endPoint.name}</td>
+                    <td className="trip-text"><Moment date={this.props.trip.dateTime} format="HH:mm" /></td>
+                    <td className="trip-text">{this.props.trip.driver.firstName + " " + this.props.trip.driver.lastName}</td>
             </tr>
         );
     }

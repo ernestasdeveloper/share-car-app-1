@@ -37,28 +37,14 @@ th.sticky-header {
     padding: 0 40px 10px;  
     color: black;
     letter-spacing: 0.5px;
+    border: none;
 }
 
-.trip-route {
+td.trip-text {
     font-size: 13px;
     font-weight: 800;
     padding: 0 40px 10px; 
     color: black; 
     letter-spacing: 0.5px;
-}
-
-.trip-time {
-    font-size: 13px;
-    font-weight: 800;
-    padding: 0 40px 10px;  
-    color: black;
-    letter-spacing: 0.5px;
-}
-
-.trip-driver-name {
-    font-size: 13px;
-    font-weight: 800;
-    padding: 0 40px 10px;  
-    color: black;
-    letter-spacing: 0.5px;
+    border: none;
 }

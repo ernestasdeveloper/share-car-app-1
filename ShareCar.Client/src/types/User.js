@@ -11,5 +11,7 @@ type User = {
     email: Email,
     phoneNo: PhoneNo,
     trips: Trip[],
-    rides: Ride[]
+    rides: Ride[],
+    ridesDriven: number,
+    ridesTaken: number
 };
