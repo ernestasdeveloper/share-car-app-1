@@ -14,12 +14,23 @@ type AddTripLayoutProps = {
 type AddTripLayoutState = {
     step: number,
     fieldValues: {
-        route: string,
+        // route: string,
         dateTime: string,
         driverId: UserId,
         toOffice: boolean,
-        office: string
-    };
+        office: Office,
+        geometry: Geometry,
+        startPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        },
+        endPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        }
+    }
 }
 
 
@@ -31,18 +42,24 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
             dateTime: null,
             driverId: null,
             toOffice: true,
-            office: null
+            office: null,
+            geometry: null,
+            startPoint: null,
+            endPoint: null
         }
     };
 
     saveValues(fields: object) {
         this.setState({
             fieldValues: {
-                route: fields.route,
+                // route: fields.route,
                 dateTime: fields.dateTime,
                 driverId: fields.driverId,
                 toOffice: fields.toOffice,
-                office: fields.office
+                office: fields.office,
+                geometry: fields.geometry,
+                startPoint: fields.startPoint,
+                endPoint: fields.endPoint
             }
         });
     };
@@ -60,8 +77,14 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
     };
 
     async submitTrip() {
+        const fieldValues = this.state.fieldValues;
         const tripService = new RestTripService();
-        await tripService.add(this.state.fieldValues);
+        await tripService.add({dateTime: fieldValues.dateTime,
+                                driverId: fieldValues.driverId,
+                                route: fieldValues.geometry,
+                                startPoint: fieldValues.startPoint,
+                                endPoint: fieldValues.endPoint
+        });
         this.nextStep();
     };
 

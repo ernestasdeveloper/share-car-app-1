@@ -3,10 +3,23 @@
 import * as React from "react";
 
 type AddTripSuccessProps = {
-     fieldValues: {
-        route: string,
+    fieldValues: {
+        // route: string,
         dateTime: string,
-        driverId: UserId
+        driverId: UserId,
+        toOffice: boolean,
+        office: Office,
+        geometry: Geometry,
+        startPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        },
+        endPoint: {
+            name: string,
+            longitude: number,
+            latitude: number
+        }
     }
 };
 
