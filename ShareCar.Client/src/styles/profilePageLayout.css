@@ -4,6 +4,8 @@
     border-radius: 5px;
     overflow: hidden;
     flex-direction: column;
+    box-shadow: 10px 10px 10px 5px rgba(94, 92, 92, 0.4);
+    margin: 10px;
 }
 
 .profile-item {
@@ -23,6 +25,48 @@
     font-family: 'Open Sans', sans-serif;
     background-color: black;
     color: white;
+}
+
+.profile-stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "stat ."
+    "rdriven ndriven"
+    "rtaken ntaken";
+    background-color: transparent;
+    overflow: hidden;
+}
+
+.profile-stats-item {
+    padding: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    margin: 10px;
+}
+
+.profile-stats-a {
+    grid-area: stat;
+    font-weight: bold;
+}
+
+.profile-stats-b {
+    grid-area: rdriven;
+}
+
+.profile-stats-c {
+    grid-area: ndriven;
+    text-align: center;
+}
+
+.profile-stats-d {
+    grid-area: rtaken;
+}
+
+.profile-stats-e {
+    grid-area: ntaken;
+    text-align: center;
 }
 
 .edit-container {
@@ -46,8 +90,11 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 17px;
     padding: 5px;
-
+    margin: 5px 0;
+    border-radius: 5px;
+    border-color: transparent;
 }
+
 .edit-item-title {
     padding: 3% 10%;
     grid-area: edit;
