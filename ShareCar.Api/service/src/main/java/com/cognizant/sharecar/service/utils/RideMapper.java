@@ -8,15 +8,8 @@ public class RideMapper {
     public static RideView mapEntityToView(Ride ride){
         return new RideView(ride.getId(),
                 ride.getStatus(),
-                ride.getPassenger().getId(),
-                ride.getPassenger().getFirstName(),
-                ride.getPassenger().getLastName(),
-                ride.getTrip().getDriver().getId(),
-                ride.getTrip().getDriver().getFirstName(),
-                ride.getTrip().getDriver().getLastName(),
-                ride.getTrip().getId(),
-                ride.getTrip().getStartPoint().getName(),
-                ride.getTrip().getEndPoint().getName(),
-                ride.getTrip().getDateTime());
+                UserMapper.mapEntityToLazyView(ride.getPassenger()),
+                UserMapper.mapEntityToLazyView(ride.getTrip().getDriver()),
+                TripMapper.mapEntityToLazyView(ride.getTrip()));
     }
 }

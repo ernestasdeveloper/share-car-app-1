@@ -1,6 +1,6 @@
 package com.cognizant.sharecar.service.utils;
 
-import com.cognizant.sharecar.api.model.dto.LazyUserView;
+import com.cognizant.sharecar.api.model.dto.LazyTripView;
 import com.cognizant.sharecar.api.model.dto.TripView;
 import com.cognizant.sharecar.repository.entity.Ride;
 import com.cognizant.sharecar.repository.entity.Trip;
@@ -14,10 +14,7 @@ public class TripMapper {
                 trip.getRoute(),
                 trip.getStatus(),
                 trip.getDateTime(),
-                new LazyUserView(trip.getDriver().getId(),
-                        trip.getDriver().getFirstName(),
-                        trip.getDriver().getLastName(),
-                        trip.getDriver().getPhoneNo()),
+                UserMapper.mapEntityToLazyView(trip.getDriver()),
                 WaypointMapper.mapEntityToView(trip.getStartPoint()),
                 WaypointMapper.mapEntityToView(trip.getEndPoint()),
                 trip.getRides()
@@ -25,4 +22,11 @@ public class TripMapper {
                         .map(Ride::getId)
                         .collect(toList()));
     }
+
+    public static LazyTripView mapEntityToLazyView(Trip trip){
+        return new LazyTripView(trip.getId(),
+                trip.getStartPoint().getName(),
+                trip.getEndPoint().getName(),
+                trip.getDateTime());
+        }
 }
