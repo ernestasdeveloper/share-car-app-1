@@ -21,6 +21,7 @@ public class Trip {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name="end_point_id")
     private Waypoint endPoint;
+    @Enumerated(EnumType.STRING)
     private TripStatus status;
     private LocalDateTime dateTime;
     @ManyToOne

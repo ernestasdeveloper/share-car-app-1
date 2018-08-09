@@ -2,6 +2,8 @@ package com.cognizant.sharecar.api.model.dto;
 
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 
+import java.time.LocalDateTime;
+
 public class RideView {
 
     private Long id;
@@ -9,21 +11,29 @@ public class RideView {
     private Long passengerId;
     private String passengerFirstName;
     private String passengerLastName;
-    private Long tripId;
     private Long driverId;
     private String driverFirstName;
     private String driverLastName;
+    private Long tripId;
+    private String startPoint;
+    private String endPoint;
+    private LocalDateTime dateTime;
 
-    public RideView(Long id, RideStatus status, Long passengerId, String passengerFirstName, String passengerLastName, Long tripId, Long driverId, String driverFirstName, String driverLastName) {
+    public RideView(Long id, RideStatus status, Long passengerId, String passengerFirstName, String passengerLastName,
+                    Long driverId, String driverFirstName, String driverLastName, Long tripId, String startPoint,
+                    String endPoint, LocalDateTime dateTime) {
         this.id = id;
         this.status = status;
         this.passengerId = passengerId;
         this.passengerFirstName = passengerFirstName;
         this.passengerLastName = passengerLastName;
-        this.tripId = tripId;
         this.driverId = driverId;
         this.driverFirstName = driverFirstName;
         this.driverLastName = driverLastName;
+        this.tripId = tripId;
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.dateTime = dateTime;
     }
 
     public Long getId() {
@@ -96,5 +106,17 @@ public class RideView {
 
     public void setDriverId(Long driverId) {
         this.driverId = driverId;
+    }
+
+    public String getStartPoint() {
+        return startPoint;
+    }
+
+    public String getEndPoint() {
+        return endPoint;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 }

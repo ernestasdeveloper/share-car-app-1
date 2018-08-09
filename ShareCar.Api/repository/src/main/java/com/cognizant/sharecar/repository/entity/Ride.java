@@ -10,6 +10,7 @@ public class Ride {
     @Id
     @GeneratedValue
     private Long id;
+    @Enumerated(EnumType.STRING)
     private RideStatus status;
     @ManyToOne
     @JoinColumn(name = "passenger_id")

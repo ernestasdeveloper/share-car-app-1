@@ -2,6 +2,7 @@
 import * as React from "react";
 import {NavBar} from "../NavigationBar/NavBar";
 import {TripService} from "../../api/TripService";
+import { Link } from "react-router-dom";
 import "../../styles/TripContainer.css";
 import Moment from "react-moment";
 import { RestRideService } from "../../api/RestRideService";
@@ -94,10 +95,8 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                 <input type="text" placeholder="input passengerid" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
                           
                             {/*END*/}
-                
-                                <button className="details-item details-item-ride gen-button">Rides</button>
+                                <Link to={"/trips/" + this.props.match.params.id + "/rides"}><button className="details-item details-item-ride gen-button">Rides</button></Link>
                                 <button className="details-item details-item-request gen-button">Request</button>
-                            
                             
                         </form>
                         </div>

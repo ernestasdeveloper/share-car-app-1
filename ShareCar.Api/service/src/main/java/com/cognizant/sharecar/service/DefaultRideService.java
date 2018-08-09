@@ -1,6 +1,5 @@
 package com.cognizant.sharecar.service;
 
-import com.cognizant.sharecar.api.model.dto.LazyRideView;
 import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
@@ -40,7 +39,7 @@ public class DefaultRideService implements RideService {
     }
 
     @Override
-    public List<LazyRideView> getAll(GetAllRidesQuery getAllQuery) {
+    public List<RideView> getAll(GetAllRidesQuery getAllQuery) {
         final RideStatus status = getAllQuery.getStatus();
         final Long passengerId = getAllQuery.getPassengerId();
         final Long tripId = getAllQuery.getTripId();
@@ -49,7 +48,7 @@ public class DefaultRideService implements RideService {
                 .and(spec.ridesFilteredByPassengerId(passengerId))
                 .and(spec.ridesFilteredByTripId(tripId)))
                 .stream()
-                .map(RideMapper::mapEntityToLazyView)
+                .map(RideMapper::mapEntityToView)
                 .collect(toList());
     }
 

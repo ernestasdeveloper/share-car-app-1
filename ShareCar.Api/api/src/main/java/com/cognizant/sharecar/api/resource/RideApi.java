@@ -1,11 +1,10 @@
 package com.cognizant.sharecar.api.resource;
 
 import com.cognizant.sharecar.api.model.dto.RideView;
-import com.cognizant.sharecar.api.model.response.*;
-import com.cognizant.sharecar.api.model.dto.LazyRideView;
 import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
 import com.cognizant.sharecar.api.model.response.AddRideResponse;
+import com.cognizant.sharecar.api.model.response.GetRideResponse;
 import com.cognizant.sharecar.api.spi.RideService;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +29,12 @@ public class RideApi {
     }
 
     @GetMapping
-    public ResponseEntity<List<GetRideLazyResponse>> getAll(@RequestParam(required = false) RideStatus status,
+    public ResponseEntity<List<GetRideResponse>> getAll(@RequestParam(required = false) RideStatus status,
                                                             @RequestParam(required = false) Long passengerId,
                                                             @RequestParam(required = false) Long tripId) {
-        List<LazyRideView> rides = rideService.getAll(new GetAllRidesQuery(status, passengerId, tripId));
-        List<GetRideLazyResponse> responses = rides.stream()
-                .map(GetRideLazyResponse::new)
+        List<RideView> rides = rideService.getAll(new GetAllRidesQuery(status, passengerId, tripId));
+        List<GetRideResponse> responses = rides.stream()
+                .map(GetRideResponse::new)
                 .collect(toList());
 
         return ResponseEntity.ok(responses);
