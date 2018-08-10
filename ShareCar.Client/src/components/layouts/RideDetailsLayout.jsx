@@ -5,16 +5,16 @@ import {RideService} from "../../api/RideService";
 import "../../styles/genericStyles.css";
 import { RideContainer } from "../Ride/RideContainer";
 
-type RideListLayoutProps = {
+type RideDetailsLayoutProps = {
     rideService: RideService
 };
 
-type RideListLayoutState = {
+type RideDetailsLayoutState = {
     isLoading: boolean,
     rides: Ride[]
 };
 
-export class RideListLayout extends React.Component<RideListLayoutProps, RideListLayoutState> {
+export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, RideDetailsLayoutState> {
     state = {
         isLoading: true,
         rides: []

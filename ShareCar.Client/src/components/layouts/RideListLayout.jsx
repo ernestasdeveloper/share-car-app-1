@@ -26,6 +26,7 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
         console.log(this.state.rides);
     }
     render() {
+        if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt-center-imp gen-container">Loading</div></div>);
         return (
             <div>
                 <NavBar/>

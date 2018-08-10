@@ -29,6 +29,7 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
     }
 
     render() {
+        if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt-center-imp gen-container">Loading</div></div>);
         return (
             <div>
                 <NavBar/>
