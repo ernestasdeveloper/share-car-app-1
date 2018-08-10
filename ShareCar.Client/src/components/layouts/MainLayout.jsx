@@ -2,9 +2,10 @@
 import * as React from "react";
 import { NavBar } from "../NavigationBar/NavBar";
 import "../../styles/genericStyles.css";
+import {Roles} from "../../utils/constants";
 
 type MainLayoutProps = {
-    toRender: React.Component<>;
+    toRender: React.Component<>
 }
 
 export class MainLayout extends React.Component<MainLayoutProps> {
@@ -13,7 +14,7 @@ export class MainLayout extends React.Component<MainLayoutProps> {
         return (
             <div>
                 <div>
-                <ToRender/>
+                    <ToRender/>
                 </div>
                 <NavBar/>
             </div>

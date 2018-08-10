@@ -1,7 +1,7 @@
 //@flow
 
 import * as React from "react";
-import {Map, View, Feature, Overlay} from "ol";
+import {Map, View, Feature} from "ol";
 import {Vector, OSM} from "ol/source";
 import {Vector as VectorLayer, Tile} from "ol/layer";
 import {Style, Stroke, Icon} from "ol/style";

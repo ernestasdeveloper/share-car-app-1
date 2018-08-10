@@ -1,7 +1,6 @@
 //@flow
 import * as React from "react";
 import {NavBar} from "../NavigationBar/NavBar";
-import {TripService} from "../../api/TripService";
 import { Link } from "react-router-dom";
 import "../../styles/TripContainer.css";
 import Moment from "react-moment";
@@ -18,7 +17,7 @@ type TripDetailsLayoutState = {
     isLoading: boolean,
     trip: Trip,
     requestBoxOpen: boolean
-}
+};
 
 export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, TripDetailsLayoutState> {
 
@@ -35,14 +34,6 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
         const data = await this.tripService.getSingle(this.props.match.params.id);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, trip: data});
-    }
-
-    async handleSubmit(e: any) {
-        const payload = {
-            passengerId: e.target.passengerId.value,
-            tripId: this.state.trip.id
-        };
-        await this.rideService.add(payload);
     }
 
     render() {
@@ -88,18 +79,8 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                             <div className="details-item details-item-d">{this.state.trip.driver.lastName}</div>
                             <div className="details-item details-item-g">Phone number</div>
                             <div className="details-item details-item-h">{this.state.trip.driver.phoneNo}</div>
-                        
-                        <form className="details-container-form" id="passengerId-debug" onSubmit={this.handleSubmit.bind(this)}>
-                            {/*BEGIN passengerId field for debugging*/}
-                           
-                                <label htmlFor="passengerId" className="details-item details-item-p">passengerId</label>
-                                <input type="text" placeholder="input passengerid" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
-                          
-                            {/*END*/}
-                                <Link role="button" className="details-item details-item-ride gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
-                                <button className="details-item details-item-request gen-button">Request</button>
-                            
-                        </form>
+                            <Link className="details-item details-item-ride gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
+                            <Link className="details-item details-item-request gen-button" to={"/trips/request/" + this.props.match.params.id}>Request</Link>
                         </div>
                     </div>
                 </div>

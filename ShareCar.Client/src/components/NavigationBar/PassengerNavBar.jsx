@@ -3,7 +3,7 @@ import * as React from "react";
 import "../../styles/NavBar.css";
 import { NavLink } from "react-router-dom";
 
-export class NavBar extends React.Component<{}> {
+export class PassengerNavBar extends React.Component<{}> {
     render() {
         return (
             <div className="bottom-navbar-siteWrapper">
