@@ -3,6 +3,7 @@ package com.cognizant.sharecar.service;
 import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
+import com.cognizant.sharecar.api.model.request.UpdateRideRequest;
 import com.cognizant.sharecar.api.spi.RideService;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import com.cognizant.sharecar.repository.entity.Ride;
@@ -59,5 +60,16 @@ public class DefaultRideService implements RideService {
                 new Trip(request.getTripId())
         );
         return rideRepository.save(rideEntity).getId();
+    }
+
+    @Override
+    public void patch(Long id, UpdateRideRequest updateRideRequest) {
+        final RideStatus status = updateRideRequest.getStatus();
+        final Ride ride = rideRepository.getOne(id);
+
+        if(status != null)
+            ride.setStatus(status);
+
+        rideRepository.save(ride);
     }
 }

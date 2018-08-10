@@ -3,11 +3,13 @@ package com.cognizant.sharecar.api.resource;
 import com.cognizant.sharecar.api.model.dto.RideView;
 import com.cognizant.sharecar.api.model.request.AddRideRequest;
 import com.cognizant.sharecar.api.model.request.GetAllRidesQuery;
+import com.cognizant.sharecar.api.model.request.UpdateRideRequest;
 import com.cognizant.sharecar.api.model.response.AddRideResponse;
 import com.cognizant.sharecar.api.model.response.GetRideResponse;
 import com.cognizant.sharecar.api.spi.RideService;
 import com.cognizant.sharecar.common.spi.model.RideStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +50,12 @@ public class RideApi {
         } catch (Exception exception) {
             throw new InternalServerException("Internal error occurred!");
         }
+    }
+
+    @PatchMapping(path = "/{id}")
+    public ResponseEntity patch(@PathVariable(name = "id") Long id,
+                                @RequestBody UpdateRideRequest updateRideRequest){
+        rideService.patch(id, updateRideRequest);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
