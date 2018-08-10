@@ -5,7 +5,7 @@ import "react-day-picker/lib/style.css";
 import "../../styles/genericStyles.css";
 import "../../styles/addTripForm.css";
 import {Geocoder} from "ol-geocoder";
-import "jquery";
+import $ from "jquery";
 
 type AddTripFromToFormProps = {
     fieldValues: {
@@ -64,15 +64,18 @@ export class AddTripFromToForm extends React.Component<AddTripFromToFormProps, A
         this.props.saveValues(payload);
         this.props.nextStep();
     }
+    
     render() {
+        var toClass = this.state.toOffice ? "btn-default" : "btn-primary";
+        var fromClass = this.state.toOffice ? "btn-primary" : "btn-default";
         return(
             <form className="gen-flex-column-container" id="add-trip-from-to-form" onSubmit={this.saveAndContinue.bind(this)}>
                 <div className="btn-group btn-group-toggle" data-toggle="buttons" onChange={this.onToFromOfficeToggle.bind(this)}>
-                    <label className="btn gen-button">
-                        <input type="radio" name="toFromOffice" id="radio1" value="true"/>To office
+                    <label className={"btn btn-lg " + toClass}>
+                        <input type="radio" name="toFromOffice" id="radio1"/>To office
                     </label>
-                    <label className="btn gen-button">
-                        <input type="radio" name="toFromOffice" id="radio2" value="false"/>From office
+                    <label className={"btn btn-lg " + fromClass}>
+                        <input type="radio" name="toFromOffice" id="radio2"/>From office
                     </label>
                     {/*TODO Highlight selected option*/}
                 </div>
