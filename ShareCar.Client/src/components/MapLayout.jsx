@@ -11,15 +11,13 @@ import {fromLonLat, transform} from "ol/proj";
 import "../styles/map.css";
 import "../styles/genericStyles.css";
 import "ol/ol.css";
-// import "ol-popup/src/ol-popup.css";
 import {RestMapService} from "../api/RestMapService";
 import * as Geocoder from "ol-geocoder";
-// import "ol-popup";
 import "ol-geocoder/dist/ol-geocoder.min.css";
+import {Offices} from "../utils/constants";
 
 type MapLayoutProps = {
     fieldValues: {
-        // route: string,
         dateTime: string,
         driverId: UserId,
         toOffice: boolean,
@@ -49,13 +47,11 @@ type MapLayoutState = {
 export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
     map: Map;
     geocoder: Geocoder;
-    // popup: Overlay.Popup;
 
     state = {
         points: []
     };
 
-    // points: any[];
     msg_el: element;
     url_osrm_route: string;
     icon_url: string;
@@ -87,9 +83,11 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
     }
     officeCoord(office) {
         switch (office) {
-            case "savanoriu_pr_16":
+            default:
                 return fromLonLat([25.255483, 54.676937]);
-            case "savanoriu_pr_28":
+            case Offices.savanoriu_pr_16:
+                return fromLonLat([25.255483, 54.676937]);
+            case Offices.savanoriu_pr_28:
                 return fromLonLat([25.252781, 54.675655]);
         }
     }
@@ -106,7 +104,6 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
 
             this.createFeature(waypoint.location);
 
-            // console.log("inside handleClick points_length " + points_length);
             if (points_length === 2) {
                 this.msg_el.innerHTML = "";
             }
@@ -126,8 +123,6 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
             else {
                 this.updateWaypoints(point1, point2);
             }
-
-            // console.log("inside handleClick points " + this.state.points);
         });
     }
 
@@ -155,8 +150,7 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
         let feature = new Feature({
             type: "route",
             geometry: route
-        });
-        //console.log(polyline);
+        });;
         feature.setStyle(this.styles.route);
         this.vectorSource.addFeature(feature);
     }
@@ -164,10 +158,6 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
     async updateWaypoints(point1: Coord4326, point2: Coord4326) {
         const data = await this.mapService.getRouteGeometry(point1, point2);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        // let waypoints = this.state.waypoints;
-        // waypoints.add(point1);
-        // waypoints.add(point2);
-        // this.setState({waypoints: waypoints});
         this.createRoute(data);
 
         // try {
@@ -179,6 +169,18 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
         //      msg_el.innerHTML = "No route found.";
         // }
     };
+
+    async clearAPoint() {
+        // Remove elements from array
+        this.setState({points: []});
+
+        // Clear vector layer
+        this.vectorSource.clear();
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Add marker for office
+        this.addCoord(this.officeCoord(this.props.fieldValues.office));
+    }
 
     saveAndContinue() {
         let payload;
@@ -227,10 +229,7 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
 
     componentDidMount() {
 
-        // this.points = [];
         this.msg_el = document.getElementById("msg");
-        // const url_osrm_nearest = "//localhost:5000/nearest/v1/driving/";
-        // this.url_osrm_route = "//localhost:5000/maps/route/v1/driving/";
         this.icon_url = "//cdn.rawgit.com/openlayers/ol3/master/examples/data/icon.png";
         this.vectorSource = new Vector();
         this.vectorLayer = new VectorLayer({
@@ -261,20 +260,16 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
             view: new View({
                 center: fromLonLat([25.272932, 54.679042]),
                 zoom: 11
-                //projection: "EPSG:4326"
             })
         });
 
         // Register map events
         this.map.on("click", this.handleClick.bind(this));
 
-        // this.popup = new Overlay.Popup();
-        // this.map.addOverlay(this.popup);
-
         this.geocoder = new Geocoder("nominatim", {
             provider: "osm",
             lang: "en",
-            placeholder: "From",
+            placeholder: "Enter location",
             targetType: "glass-button",
             limit: 5,
             keepOpen: false,
@@ -296,7 +291,10 @@ export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
             <div>
                 <div className="gen-map-container" id="map"></div>
                 <div id="msg"></div>
-                <div className="map-button"><button type="submit" className="gen-button" onClick={this.saveAndContinue.bind(this)}>Next</button></div>
+                <div className="map-buttons-container">
+                    <button className="gen-button btn-lg" onClick={this.saveAndContinue.bind(this)}>Next</button>
+                    <button className="gen-button btn-lg" onClick={this.clearAPoint.bind(this)}>Clear</button>
+                </div>
             </div>
         );
     }

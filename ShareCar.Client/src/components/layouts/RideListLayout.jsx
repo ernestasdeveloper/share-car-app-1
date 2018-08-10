@@ -1,26 +1,23 @@
 //@flow
 import * as React from "react";
 import {NavBar} from "../NavigationBar/NavBar";
-import {RideService} from "../../api/RideService";
+import {RestRideService} from "../../api/RestRideService";
 import "../../styles/genericStyles.css";
 import { RideContainer } from "../Ride/RideContainer";
-
-type RideListLayoutProps = {
-    rideService: RideService
-};
 
 type RideListLayoutState = {
     isLoading: boolean,
     rides: Ride[]
 };
 
-export class RideListLayout extends React.Component<RideListLayoutProps, RideListLayoutState> {
+export class RideListLayout extends React.Component<{}, RideListLayoutState> {
+    rideService = new RestRideService();
     state = {
         isLoading: true,
         rides: []
     };
     async componentDidMount() {
-        const data = await this.props.rideService.getAll(this.props.match.params.id, this.props.match.params.passenger);
+        const data = await this.rideService.getAll(this.props.match.params.id, this.props.match.params.passenger);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, rides: data});
         console.log(this.state.rides);

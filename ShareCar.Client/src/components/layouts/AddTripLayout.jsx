@@ -7,10 +7,6 @@ import {AddTripConfirmation} from "../AddTrip/AddTripConfirmation";
 import {AddTripFromToForm} from "../AddTrip/AddTripFromToForm";
 import {MapLayout} from "../MapLayout";
 
-type AddTripLayoutProps = {
-
-};
-
 type AddTripLayoutState = {
     step: number,
     fieldValues: {
@@ -34,7 +30,7 @@ type AddTripLayoutState = {
 }
 
 
-export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLayoutState> {
+export class AddTripLayout extends React.Component<{}, AddTripLayoutState> {
     state = {
         step: 1,
         fieldValues: {
@@ -49,10 +45,11 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
         }
     };
 
+    tripService = new RestTripService();
+
     saveValues(fields: object) {
         this.setState({
             fieldValues: {
-                // route: fields.route,
                 dateTime: fields.dateTime,
                 driverId: fields.driverId,
                 toOffice: fields.toOffice,
@@ -78,8 +75,7 @@ export class AddTripLayout extends React.Component<AddTripLayoutProps, AddTripLa
 
     async submitTrip() {
         const fieldValues = this.state.fieldValues;
-        const tripService = new RestTripService();
-        await tripService.add({dateTime: fieldValues.dateTime,
+        await this.tripService.add({dateTime: fieldValues.dateTime,
                                 driverId: fieldValues.driverId,
                                 route: fieldValues.geometry,
                                 startPoint: fieldValues.startPoint,

@@ -31,3 +31,9 @@ export const Offices = {
     savanoriu_pr_16: "savanoriu-pr-16",
     savanoriu_pr_28: "savanoriu-pr-28"
 };
+
+export const Roles = {
+    PASSENGER: "PASSENGER",
+    DRIVER: "DRIVER",
+    ADMIN: "ADMIN"
+}
