@@ -10,5 +10,6 @@ type Ride = {
     id: RideId,
     status: RideStatus,
     passenger: User,
-    trip: Trip
+    driver: User,
+    trip: LazyTrip
 };
