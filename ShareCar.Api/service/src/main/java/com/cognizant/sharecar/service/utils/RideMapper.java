@@ -10,6 +10,7 @@ public class RideMapper {
                 ride.getStatus(),
                 UserMapper.mapEntityToLazyView(ride.getPassenger()),
                 UserMapper.mapEntityToLazyView(ride.getTrip().getDriver()),
-                TripMapper.mapEntityToLazyView(ride.getTrip()));
+                TripMapper.mapEntityToLazyView(ride.getTrip()),
+                WaypointMapper.mapEntityToView(ride.getPickupPoint()));
     }
 }

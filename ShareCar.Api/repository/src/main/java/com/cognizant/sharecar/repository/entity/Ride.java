@@ -12,6 +12,9 @@ public class Ride {
     private Long id;
     @Enumerated(EnumType.STRING)
     private RideStatus status;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pickup_point_id")
+    private Waypoint pickupPoint;
     @ManyToOne
     @JoinColumn(name = "passenger_id")
     private User passenger;
@@ -22,10 +25,11 @@ public class Ride {
     public Ride() {
     }
 
-    public Ride(RideStatus status, User passenger, Trip trip) {
+    public Ride(RideStatus status, User passenger, Trip trip, Waypoint pickupPoint) {
         this.status = status;
         this.passenger = passenger;
         this.trip = trip;
+        this.pickupPoint = pickupPoint;
     }
 
     public Long getId() {
@@ -58,5 +62,13 @@ public class Ride {
 
     public void setTrip(Trip trip) {
         this.trip = trip;
+    }
+
+    public Waypoint getPickupPoint() {
+        return pickupPoint;
+    }
+
+    public void setPickupPoint(Waypoint pickupPoint) {
+        this.pickupPoint = pickupPoint;
     }
 }

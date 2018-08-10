@@ -13,6 +13,7 @@ import com.cognizant.sharecar.repository.specifications.RideSpecifications;
 import com.cognizant.sharecar.repository.spi.RideRepository;
 import com.cognizant.sharecar.service.exception.NotFoundException;
 import com.cognizant.sharecar.service.utils.RideMapper;
+import com.cognizant.sharecar.service.utils.WaypointMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +60,8 @@ public class DefaultRideService implements RideService {
     public Long add(AddRideRequest request) {
         final Ride rideEntity = new Ride(RideStatus.REQUEST_PENDING,
                 new User(request.getPassengerId()),
-                new Trip(request.getTripId())
+                new Trip(request.getTripId()),
+                WaypointMapper.mapViewToEntity(request.getPickupPoint())
         );
         return rideRepository.save(rideEntity).getId();
     }
