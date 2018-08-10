@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import "../../styles/TripContainer.css";
 import Moment from "react-moment";
 import { RestRideService } from "../../api/RestRideService";
+import { RestTripService } from "../../api/RestTripService";
 import "../../styles/genericStyles.css";
 import "../../styles/tripDetails.css";
 
 type TripDetailsLayoutProps = {
-    tripService: TripService,
     tripId: TripId
 };
 
@@ -20,8 +20,6 @@ type TripDetailsLayoutState = {
     requestBoxOpen: boolean
 }
 
-const RIDE_SERVICE = new RestRideService();
-
 export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, TripDetailsLayoutState> {
 
     state = {
@@ -30,8 +28,11 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
         requestBoxOpen: false
     };
 
+    tripService = new RestTripService();
+    rideService = new RestRideService();
+
     async componentDidMount() {
-        const data = await this.props.tripService.getSingle(this.props.match.params.id);
+        const data = await this.tripService.getSingle(this.props.match.params.id);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, trip: data});
     }
@@ -41,7 +42,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
             passengerId: e.target.passengerId.value,
             tripId: this.state.trip.id
         };
-        await RIDE_SERVICE.add(payload);
+        await this.rideService.add(payload);
     }
 
     render() {

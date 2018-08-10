@@ -2,12 +2,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { NavBar } from "../NavigationBar/NavBar";
-import { UserService } from "../../api/UserService";
+import { RestUserService } from "../../api/RestUserService";
 import "../../styles/profilePageLayout.css";
 import "../../styles/genericStyles.css";
 
 type ProfilePageLayoutProps = {
-    userService: UserService,
     match: any
 };
 
@@ -17,12 +16,14 @@ type ProfilePageLayoutState = {
 }
 
 export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, ProfilePageLayoutState> {
+    userService = new RestUserService();
+
     state = {
         isLoading: true,
         user: []
     };
     async componentDidMount() {
-        const data = await this.props.userService.getSingle(this.props.match.params.id);
+        const data = await this.userService.getSingle(this.props.match.params.id);
         await new Promise(resolve => setTimeout(resolve, 1000));
         this.setState({isLoading: false, user: data});
     }

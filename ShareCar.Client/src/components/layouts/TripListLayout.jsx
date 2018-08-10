@@ -1,13 +1,12 @@
 //@flow
 import * as React from "react";
 import {NavBar} from "../NavigationBar/NavBar";
-import {TripService} from "../../api/TripService";
+import {RestTripService} from "../../api/RestTripService";
 import {TripContainer} from "../Trip/TripContainer";
 import "../../styles/TripContainer.css";
 import "../../styles/genericStyles.css";
 
 type TripListLayoutProps = {
-    tripService: TripService,
     match: any
 };
 
@@ -17,13 +16,16 @@ type TripListLayoutState = {
 };
 
 export class TripListLayout extends React.Component<TripListLayoutProps, TripListLayoutState> {
+
+    tripService = new RestTripService();
+
     state = {
         isLoading: true,
         trips: []
     };
     async componentDidMount() {
         console.log("date " + this.props.match.params.date);
-        const data = await this.props.tripService.getAll(this.props.match.params.date);
+        const data = await this.tripService.getAll(this.props.match.params.date);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, trips: data});
     }

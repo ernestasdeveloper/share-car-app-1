@@ -30,7 +30,13 @@
     font-family: 'Lato', sans-serif;
 }
 
+.bottom-navbar-button.active {
+    background-color:white; 
+    color: black;
+}
+
 .bottom-navbar-button:hover {
+    text-decoration: none;
     background-color:white; 
     color: black;
 }

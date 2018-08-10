@@ -1,42 +1,37 @@
 //@flow
-import React, {Component} from "react";
+import * as React from "react";
 import "./App.css";
 import {MainLayout} from "./components/layouts/MainLayout";
 import {TripListLayout} from "./components/layouts/TripListLayout";
 import {AddTripLayout} from "./components/layouts/AddTripLayout";
 import {TripDetailsLayout} from "./components/layouts/TripDetailsLayout";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import {RestTripService} from "./api/RestTripService";
+import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import { TripSearchLayout } from "./components/layouts/TripSearchLayout";
-import { RestUserService } from "./api/RestUserService";
 import { ProfilePageLayout } from "./components/layouts/ProfilePageLayout";
 import { MapLayout } from "./components/MapLayout";
 import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
 import {RideListLayout} from "./components/layouts/RideListLayout";
-import {RestRideService} from "./api/RestRideService";
+import {RoleSelectionLayout} from "./components/layouts/RoleSelectionLayout";
+import {Roles} from "./utils/constants";
 
 
-const TRIP_SERVICE = new RestTripService();
-const USER_SERVICE = new RestUserService();
-const RIDE_SERVICE = new RestRideService();
-
-class App extends Component<{}> {
+class App extends React.Component<{}> {
     render() {
         return (
             <div>
                 <Router>
                     <Switch>
-                        {/*<Route path="/ride_request" component={RideRequestLayout}/>
-                        <Route path="/ride_list_pass" component={RideListPassengerLayout}/>*/}
-                        <Route name="main" exact path="/" component={MainLayout}/>
-                        <Route name="trip_details" exact path="/trips/details/:id" component={props => <TripDetailsLayout {...props} tripService={TRIP_SERVICE}/>}/>
-                        <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
-                        <Route name="new_trip" exact path="/trips/new" component={() => <MainLayout toRender={ AddTripLayout }/>}/>
-                        <Route name="trips" exact path="/trips/:date?" render={props => <TripListLayout {...props} tripService={TRIP_SERVICE}/>}/>
-                        <Route name="trip_rides" path="/trips/:id/rides" render={props => <RideListLayout {...props} rideService={RIDE_SERVICE}/>}/>
-                        <Route name="profile_edit" path="/profile/edit/:id" render={props => <EditProfileLayout {...props} userService={USER_SERVICE}/>}/>
-                        <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props} userService={USER_SERVICE}/>}/>
-                        <Route name="rides" exact path="/rides/:passenger" render={props => <RideListLayout {...props} rideService={RIDE_SERVICE}/>}/>
+                        <Route name="main" exact path="/" render={() => <RoleSelectionLayout/>} />
+                        <Route name="passenger_main" exact path="/passenger" render={() => <MainLayout role={Roles.PASSENGER}/>}/>
+                        <Route name="driver_main" exact path="/driver" render={() => <MainLayout role={Roles.DRIVER}/>}/>
+                        <Route name="trip_details" exact path="/trips/details/:id" render={props => <TripDetailsLayout {...props} />}/>
+                        <Route name="trip_search" exact path="/trips/search" render={() => <TripSearchLayout/>}/>
+                        <Route name="new_trip" exact path="/trips/new" render={() => <MainLayout toRender={ AddTripLayout }/>}/>
+                        <Route name="trips" exact path="/trips/:date?" render={props => <TripListLayout {...props}/>}/>
+                        <Route name="trip_rides" path="/trips/:id/rides" render={props => <RideListLayout {...props}/>}/>
+                        <Route name="profile_edit" path="/profile/edit/:id" render={props => <EditProfileLayout {...props}/>}/>
+                        <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props}/>}/>
+                        <Route name="rides" exact path="/rides/:passenger" render={props => <RideListLayout {...props}/>}/>
                         <Route name="map" path="/map" render={() => <MapLayout/>}/>
                     </Switch>
                 </Router>
