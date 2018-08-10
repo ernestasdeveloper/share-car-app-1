@@ -33,8 +33,9 @@ public class RideApi {
     @GetMapping
     public ResponseEntity<List<GetRideResponse>> getAll(@RequestParam(required = false) RideStatus status,
                                                             @RequestParam(required = false) Long passengerId,
-                                                            @RequestParam(required = false) Long tripId) {
-        List<RideView> rides = rideService.getAll(new GetAllRidesQuery(status, passengerId, tripId));
+                                                            @RequestParam(required = false) Long tripId,
+                                                            @RequestParam(required = false) Long driverId) {
+        List<RideView> rides = rideService.getAll(new GetAllRidesQuery(status, passengerId, tripId, driverId));
         List<GetRideResponse> responses = rides.stream()
                 .map(GetRideResponse::new)
                 .collect(toList());

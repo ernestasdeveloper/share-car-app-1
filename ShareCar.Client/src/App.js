@@ -13,6 +13,7 @@ import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
 import {RideListLayout} from "./components/layouts/RideListLayout";
 import {RoleSelectionLayout} from "./components/layouts/RoleSelectionLayout";
 import {RideDetailsLayout} from "./components/layouts/RideDetailsLayout";
+import {RideRequestLayout} from "./components/layouts/RideRequestLayout";
 import {Roles} from "./utils/constants";
 
 
@@ -22,10 +23,12 @@ class App extends React.Component<{}> {
             <div>
                 <Router>
                     <Switch>
-                        <Route name="main" exact path="/" render={() => <RoleSelectionLayout/>} />
+                        <Route name="main" exact path="/" render={() => <Redirect to="/role"/>}/>
+                        <Route name="role_selection" exact path="/role" render={() => <RoleSelectionLayout/>} />
                         <Route name="passenger_main" exact path="/passenger" render={() => <MainLayout role={Roles.PASSENGER}/>}/>
                         <Route name="driver_main" exact path="/driver" render={() => <MainLayout role={Roles.DRIVER}/>}/>
-                        <Route name="trip_details" exact path="/trips/details/:id" render={props => <TripDetailsLayout {...props} />}/>
+                        <Route name="trip_details" exact path="/trips/details/:id" render={props => <TripDetailsLayout {...props}/>}/>
+                        <Route name="ride_request" exact path="/trips/request/:id" render={props => <RideRequestLayout {...props}/>}/>
                         <Route name="trip_search" exact path="/trips/search" render={() => <TripSearchLayout/>}/>
                         <Route name="new_trip" exact path="/trips/new" render={() => <MainLayout toRender={ AddTripLayout }/>}/>
                         <Route name="trips" exact path="/trips/:date?" render={props => <TripListLayout {...props}/>}/>

@@ -7,12 +7,13 @@ public class GetAllRidesQuery {
     private RideStatus status;
     private Long passengerId;
     private Long tripId;
+    private Long driverId;
 
-    // Check for null parameters?
-    public GetAllRidesQuery(RideStatus status, Long passengerId, Long tripId) {
+    public GetAllRidesQuery(RideStatus status, Long passengerId, Long tripId, Long driverId) {
         this.status = status;
         this.passengerId = passengerId;
         this.tripId = tripId;
+        this.driverId = driverId;
     }
 
     public RideStatus getStatus() {
@@ -37,5 +38,9 @@ public class GetAllRidesQuery {
 
     public void setTripId(Long tripId) {
         this.tripId = tripId;
+    }
+
+    public Long getDriverId() {
+        return driverId;
     }
 }

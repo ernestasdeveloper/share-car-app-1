@@ -36,7 +36,7 @@ export class EditProfileLayout extends React.Component<EditProfileLayoutProps, E
             email: e.target.email.value,
             phoneNo: e.target.phoneNo.value
         }
-        const data = await this.userService.update(this.state.user.id, payload);
+        await this.userService.update(this.state.user.id, payload);
         console.dir(payload, {depth: null});
         this.setState({redirect: true});
     }

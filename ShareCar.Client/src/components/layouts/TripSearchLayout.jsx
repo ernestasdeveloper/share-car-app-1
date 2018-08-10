@@ -3,7 +3,6 @@ import * as React from "react";
 import { TripSearchForm } from "../Trip/TripSearchForm";
 import {RestTripService} from "../../api/RestTripService";
 import { NavBar } from "../NavigationBar/NavBar";
-import { Link } from "react-router-dom";
 import "../../styles/genericStyles.css";
 
 export class TripSearchLayout extends React.Component<{}> {

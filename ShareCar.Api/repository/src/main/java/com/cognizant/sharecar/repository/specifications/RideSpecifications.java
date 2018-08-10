@@ -34,4 +34,13 @@ public class RideSpecifications {
                 return cb.isNotNull(root.get("trip"));
         };
     }
+
+    public Specification<Ride> ridesFilteredByDriverId(Long driverId) {
+        return (root, query, cb) ->{
+            if(driverId != null)
+                return cb.equal(root.join("trip").join("driver").get("id"), driverId);
+            else
+                return cb.isNotNull(root.get("trip"));
+        };
+    }
 }
