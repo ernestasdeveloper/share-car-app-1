@@ -44,10 +44,12 @@ public class DefaultRideService implements RideService {
         final RideStatus status = getAllQuery.getStatus();
         final Long passengerId = getAllQuery.getPassengerId();
         final Long tripId = getAllQuery.getTripId();
+        final Long driverId = getAllQuery.getDriverId();
 
         return rideRepository.findAll(rideSpecifications.ridesFilteredByStatus(status)
                 .and(rideSpecifications.ridesFilteredByPassengerId(passengerId))
-                .and(rideSpecifications.ridesFilteredByTripId(tripId)))
+                .and(rideSpecifications.ridesFilteredByTripId(tripId))
+                .and(rideSpecifications.ridesFilteredByDriverId(driverId)))
                 .stream()
                 .map(RideMapper::mapEntityToView)
                 .collect(toList());
