@@ -96,7 +96,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                 <input type="text" placeholder="input passengerid" className="w3-input w3-border w3-round-large details-item-pi details-item" name="passengerId"/>
                           
                             {/*END*/}
-                                <Link to={"/trips/" + this.props.match.params.id + "/rides"}><button className="details-item details-item-ride gen-button">Rides</button></Link>
+                                <Link role="button" className="details-item details-item-ride gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
                                 <button className="details-item details-item-request gen-button">Request</button>
                             
                         </form>

@@ -4,17 +4,20 @@ import {NavBar} from "../NavigationBar/NavBar";
 import {RestRideService} from "../../api/RestRideService";
 import "../../styles/genericStyles.css";
 import { RideContainer } from "../Ride/RideContainer";
+import { Roles } from "../../utils/constants";
 
 type RideListLayoutState = {
     isLoading: boolean,
-    rides: Ride[]
+    rides: Ride[],
+    role: Roles
 };
 
-export class RideListLayout extends React.Component<{}, RideListLayoutState> {
+export class RideListLayout extends React.Component<RideListLayoutProps, RideListLayoutState> {
     rideService = new RestRideService();
     state = {
         isLoading: true,
-        rides: []
+        rides: [],
+        role: "DRIVER"
     };
     async componentDidMount() {
         const data = await this.rideService.getAll(this.props.match.params.id, this.props.match.params.passenger);
@@ -31,9 +34,19 @@ export class RideListLayout extends React.Component<{}, RideListLayoutState> {
                 <table className="table">
                         <thead className="thead-dark">
                             <tr>
-                                <th scope="col" className="gen-txt-imp sticky-header">Status</th>
-                                <th scope="col" className="gen-txt-imp sticky-header">Driver</th>
-                                <th scope="col"className="gen-txt-imp sticky-header">Passenger</th>
+                            <th scope="col" className="gen-txt-imp sticky-header">Status</th>
+                            <th scope="col" className="gen-txt-imp sticky-header">
+                            {
+                                (() => {
+                                    switch (this.state.role){
+                                        case "DRIVER": return "Passenger";
+                                        case "PASSENGER": return "Driver";
+                                        case "ADMIN": return "Driver & Passenger";
+                                        default: return "Error";
+                                    }
+                                })()
+                            }</th>
+                                <th scope="col"className="gen-txt-imp sticky-header">Time</th>
                             </tr>
                         </thead>
                         <tbody>

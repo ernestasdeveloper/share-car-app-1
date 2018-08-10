@@ -36,7 +36,6 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
             <div>
                 <NavBar/>
                 <div className="trip-container gen-container">
-
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
