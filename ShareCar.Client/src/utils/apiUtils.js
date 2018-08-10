@@ -12,7 +12,8 @@ export const fetchData =
         const config = {
             method: method,
             body: JSON.stringify(payload),
-            headers: new Headers(headers)
+            headers: new Headers(headers),
+            credentials: "include"
         };
         return fetch(url, config)
             .then(r => r.text())

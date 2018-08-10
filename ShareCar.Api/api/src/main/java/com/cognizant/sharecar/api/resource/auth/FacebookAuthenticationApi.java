@@ -4,6 +4,7 @@ import com.cognizant.sharecar.api.model.request.AccessTokenRequest;
 import com.cognizant.sharecar.api.spi.FacebookAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class FacebookAuthenticationApi {
@@ -33,6 +35,7 @@ public class FacebookAuthenticationApi {
         Cookie cookie = new Cookie("token", authToken);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
+        cookie.setMaxAge(-1);
         httpServletResponse.addCookie(cookie);
         return ResponseEntity.noContent().build();
     }
@@ -49,5 +52,4 @@ public class FacebookAuthenticationApi {
         });
         return ResponseEntity.noContent().build();
     }
-
 }

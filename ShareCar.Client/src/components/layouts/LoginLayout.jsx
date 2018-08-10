@@ -3,6 +3,7 @@ import * as React  from 'react';
 import FacebookLogin from 'react-facebook-login';
 import history from '../../helpers/history';
 import AuthenticationService from '../../api/AuthenticationService';
+import { Link } from "react-router-dom";
 
 export class LoginLayout extends React.Component<{}> {
     authService: AuthenticationService = new AuthenticationService();
@@ -25,6 +26,6 @@ export class LoginLayout extends React.Component<{}> {
                 fields="name,email,picture"
                 callback={this.responseFacebook} 
             />
-        </div>;
+        </div>
     }
 }
