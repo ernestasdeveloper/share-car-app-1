@@ -5,12 +5,14 @@ import "../../styles/genericStyles.css";
 import "../../styles/profilePageLayout.css";
 import {UserService} from "../../api/UserService";
 import {RestUserService} from "../../api/RestUserService";
+import { Redirect } from "react-router-dom";
 
 type EditProfileLayoutProps = {
     match: any
 };
 
 type EditProfileLayoutState = {
+    redirect: boolean,
     isLoading: boolean,
     user: User
 }
@@ -19,6 +21,7 @@ export class EditProfileLayout extends React.Component<EditProfileLayoutProps, E
     userService: UserService;
 
     state = {
+        redirect: false,
         isLoading: true,
         user: []
     };
@@ -35,6 +38,7 @@ export class EditProfileLayout extends React.Component<EditProfileLayoutProps, E
         }
         const data = await this.userService.update(this.state.user.id, payload);
         console.dir(payload, {depth: null});
+        this.setState({redirect: true});
     }
 
     async componentDidMount() {
@@ -60,6 +64,9 @@ export class EditProfileLayout extends React.Component<EditProfileLayoutProps, E
                     <input className="gen-button edit-item-btn" type="submit" value="Submit"/>
                     </div>
                 </form>
+                {this.state.redirect && (
+                    <Redirect push to="/profile/1"/> 
+                )}
                 </div>
                 <NavBar/>
             </div>

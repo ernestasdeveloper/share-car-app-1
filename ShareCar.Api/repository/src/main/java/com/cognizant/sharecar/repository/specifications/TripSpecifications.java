@@ -12,7 +12,7 @@ import java.time.LocalTime;
 public class TripSpecifications{
 
     public Specification<Trip> tripsFilteredByStatus(TripStatus status) {
-        return (Specification<Trip>) (root, query, cb) ->{
+        return (root, query, cb) ->{
             if(status != null)
                 return cb.equal(root.get("status"), status);
             else
@@ -21,7 +21,7 @@ public class TripSpecifications{
     }
 
     public Specification<Trip> tripsFilteredByDate(LocalDate date) {
-        return (Specification<Trip>) (root, query, cb) ->{
+        return (root, query, cb) ->{
             if(date != null)
                 return cb.between(root.get("dateTime"), date.atStartOfDay(),date.atTime(LocalTime.MAX));
             else
@@ -30,7 +30,7 @@ public class TripSpecifications{
     }
 
     public Specification<Trip> tripsFilteredByDriverId(Long driverId) {
-        return (Specification<Trip>) (root, query, cb) ->{
+        return (root, query, cb) ->{
             if(driverId != null)
                 return cb.equal(root.join("driver").get("id"), driverId);
             else
