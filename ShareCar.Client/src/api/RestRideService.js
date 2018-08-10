@@ -23,6 +23,14 @@ export class RestRideService implements RideService {
         return data.value;
     }
 
+    async getSingle(rideId: RideId): Promise<Ride> {
+        const data: ApiResponse<Ride> = await fetchData("GET", buildUrl("/rides/" + rideId));
+        if (data.isError) {
+            throw new Error();
+        }
+        return data.value;
+    }
+
 
     async add(item: AddRideRequest): Promise<AddRideResponse> {
         const data: ApiResponse<AddRideResponse> = await fetchData("POST", buildUrl(`/rides`), item);

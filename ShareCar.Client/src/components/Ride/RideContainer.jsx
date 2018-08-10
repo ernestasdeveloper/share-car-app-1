@@ -25,7 +25,7 @@ export class RideContainer extends React.Component<RideContainerProps, RideConta
     }
     render() {
         if (this.state.redirect) {
-            return <Redirect push to={"/trips/" + this.props.ride.trip.id + "/ride/" + this.props.ride.id}/> //TODO: add proper link
+            return <Redirect push to={"/rides/" + this.props.ride.id + "/details"}/> //TODO: add proper link
         }
         return (
             <tr onClick={this.handleOnClick.bind(this)}>

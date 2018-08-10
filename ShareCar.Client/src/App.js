@@ -12,6 +12,7 @@ import { MapLayout } from "./components/MapLayout";
 import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
 import {RideListLayout} from "./components/layouts/RideListLayout";
 import {RoleSelectionLayout} from "./components/layouts/RoleSelectionLayout";
+import {RideDetailsLayout} from "./components/layouts/RideDetailsLayout";
 import {Roles} from "./utils/constants";
 
 
@@ -31,6 +32,7 @@ class App extends React.Component<{}> {
                         <Route name="trip_rides" path="/trips/:id/rides" render={props => <RideListLayout {...props}/>}/>
                         <Route name="profile_edit" path="/profile/edit/:id" render={props => <EditProfileLayout {...props}/>}/>
                         <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props}/>}/>
+                        <Route name="rides_details" exact path="/rides/:id/details" render={props => <RideDetailsLayout {...props}/>}/>
                         <Route name="rides" exact path="/rides/:passenger" render={props => <RideListLayout {...props}/>}/>
                         <Route name="map" path="/map" render={() => <MapLayout/>}/>
                     </Switch>
