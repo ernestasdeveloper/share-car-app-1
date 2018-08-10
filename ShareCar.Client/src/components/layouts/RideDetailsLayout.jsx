@@ -30,22 +30,7 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
             <div>
                 <NavBar/>
                 <div className="gen-container">
-                <table className="table">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th scope="col" className="gen-txt-imp sticky-header">Status</th>
-                                <th scope="col" className="gen-txt-imp sticky-header">Driver</th>
-                                <th scope="col"className="gen-txt-imp sticky-header">Passenger</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.rides.map((x, i) =>
-                            <RideContainer key={i}
-                                ride={x}
-                                />)
-                        }
-                        </tbody>
-                    </table>
+                
                 </div>
             </div>
         );

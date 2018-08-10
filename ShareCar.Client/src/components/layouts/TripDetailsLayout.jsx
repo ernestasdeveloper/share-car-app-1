@@ -45,7 +45,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
     }
 
     render() {
-        if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt">Loading</div></div>);
+        if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt-center-imp gen-container">Loading</div></div>);
         else { 
             return (
                 <div>

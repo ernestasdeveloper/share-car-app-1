@@ -13,6 +13,7 @@ import { ProfilePageLayout } from "./components/layouts/ProfilePageLayout";
 import { MapLayout } from "./components/MapLayout";
 import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
 import {RideListLayout} from "./components/layouts/RideListLayout";
+import {RideDetailsLayout} from "./components/layouts/RideDetailsLayout";
 import {RestRideService} from "./api/RestRideService";
 
 
@@ -33,6 +34,7 @@ class App extends Component<{}> {
                         <Route name="trip_search" exact path="/trips/search" component={() => <TripSearchLayout tripService={TRIP_SERVICE}/>}/>
                         <Route name="new_trip" exact path="/trips/new" component={() => <MainLayout toRender={ AddTripLayout }/>}/>
                         <Route name="trips" exact path="/trips/:date?" render={props => <TripListLayout {...props} tripService={TRIP_SERVICE}/>}/>
+                        <Route name="ride_details" path="/trips/:id/rides/:id" render={props => <RideDetailsLayout {...props} rideService={RIDE_SERVICE}/>}/>
                         <Route name="trip_rides" path="/trips/:id/rides" render={props => <RideListLayout {...props} rideService={RIDE_SERVICE}/>}/>
                         <Route name="profile_edit" path="/profile/edit/:id" render={props => <EditProfileLayout {...props} userService={USER_SERVICE}/>}/>
                         <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props} userService={USER_SERVICE}/>}/>
