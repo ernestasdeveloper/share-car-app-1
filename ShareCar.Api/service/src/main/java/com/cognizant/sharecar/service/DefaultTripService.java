@@ -26,12 +26,12 @@ import static java.util.stream.Collectors.toList;
 public class DefaultTripService implements TripService {
 
     private final TripRepository tripRepository;
-    private final TripSpecifications spec;
+    private final TripSpecifications tripSpecifications;
 
     @Autowired
-    public DefaultTripService(TripRepository tripRepository, TripSpecifications spec) {
+    public DefaultTripService(TripRepository tripRepository, TripSpecifications specifications) {
         this.tripRepository = tripRepository;
-        this.spec = spec;
+        this.tripSpecifications = specifications;
     }
 
     @Override
@@ -47,9 +47,9 @@ public class DefaultTripService implements TripService {
         final Long driverId = getAllTripsQuery.getDriverId();
         final LocalDate date = getAllTripsQuery.getDate();
 
-        return tripRepository.findAll(spec.tripsFilteredByDate(date)
-                .and(spec.tripsFilteredByStatus(status))
-                .and(spec.tripsFilteredByDriverId(driverId)))
+        return tripRepository.findAll(tripSpecifications.tripsFilteredByDate(date)
+                .and(tripSpecifications.tripsFilteredByStatus(status))
+                .and(tripSpecifications.tripsFilteredByDriverId(driverId)))
                 .stream()
                 .map(TripMapper::mapEntityToView)
                 .collect(toList());

@@ -23,12 +23,12 @@ import static java.util.stream.Collectors.toList;
 public class DefaultRideService implements RideService {
 
     private final RideRepository rideRepository;
-    private final RideSpecifications spec;
+    private final RideSpecifications rideSpecifications;
 
     @Autowired
-    public DefaultRideService(RideRepository rideRepository, RideSpecifications spec) {
+    public DefaultRideService(RideRepository rideRepository, RideSpecifications rideSpecifications) {
         this.rideRepository = rideRepository;
-        this.spec = spec;
+        this.rideSpecifications = rideSpecifications;
     }
 
     @Override
@@ -44,9 +44,9 @@ public class DefaultRideService implements RideService {
         final Long passengerId = getAllQuery.getPassengerId();
         final Long tripId = getAllQuery.getTripId();
 
-        return rideRepository.findAll(spec.ridesFilteredByStatus(status)
-                .and(spec.ridesFilteredByPassengerId(passengerId))
-                .and(spec.ridesFilteredByTripId(tripId)))
+        return rideRepository.findAll(rideSpecifications.ridesFilteredByStatus(status)
+                .and(rideSpecifications.ridesFilteredByPassengerId(passengerId))
+                .and(rideSpecifications.ridesFilteredByTripId(tripId)))
                 .stream()
                 .map(RideMapper::mapEntityToView)
                 .collect(toList());
