@@ -1,18 +1,20 @@
 package com.cognizant.sharecar.api.model.dto;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class LazyTripView {
     private Long id;
     private String startPointName;
     private String endPointName;
-    private LocalDateTime dateTime;
+    private ZonedDateTime dateTime;
 
     public LazyTripView(Long id, String startPointName, String endPointName, LocalDateTime dateTime) {
         this.id = id;
         this.startPointName = startPointName;
         this.endPointName = endPointName;
-        this.dateTime = dateTime;
+        this.dateTime = ZonedDateTime.of(dateTime, ZoneId.of("Z"));
     }
 
     public Long getId() {
@@ -27,7 +29,7 @@ public class LazyTripView {
         return endPointName;
     }
 
-    public LocalDateTime getDateTime() {
+    public ZonedDateTime getDateTime() {
         return dateTime;
     }
 }
