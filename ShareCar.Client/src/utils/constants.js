@@ -33,7 +33,7 @@ export const Offices = {
 };
 
 export const Roles = {
-    PASSENGER: "PASSENGER",
-    DRIVER: "DRIVER",
-    ADMIN: "ADMIN"
+    PASSENGER: "passenger",
+    DRIVER: "driver",
+    ADMIN: "admin"
 }

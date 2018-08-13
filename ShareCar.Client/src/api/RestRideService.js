@@ -8,13 +8,16 @@ const buildUrl = (path: string) => API_URL + path;
 
 export class RestRideService implements RideService {
 
-    async getAll(tripId: TripId, passengerId: PassengerId): Promise<Ride[]> {
+    async getAll(tripId: TripId, passengerId: PassengerId, driverId: DriverId): Promise<Ride[]> {
         var data: ApiResponse<Ride[]> = null;
         if (tripId !== undefined) {
             data = await fetchData("GET", buildUrl("/rides?tripId=" + tripId));
         }
         else if (passengerId !== undefined){
             data = await fetchData("GET", buildUrl("/rides?passengerId=" + passengerId));
+        }
+        else if (driverId !== undefined){
+            data = await fetchData ("GET", buildUrl("/rides?driverId=" + driverId));
         }
 
         if (data.isError) {

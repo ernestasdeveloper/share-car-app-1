@@ -61,7 +61,7 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                             <div className="details-item details-item-g">Phone number</div>
                             <div className="details-item details-item-h">{this.state.trip.driver.phoneNo}</div>
                             <div className="details-container-form">
-                            <Link className="details-item details-item-rides gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
+                            <Link className="details-item details-item-rides gen-button" to={"/trips/" + this.props.match.params.id + "/rides/driver"}>Rides</Link>
                             {/*PassengerID hardcoded into URL*/}
                             <Link className="details-item details-item-request gen-button" to={"/trips/request/" + this.props.match.params.id + "/2"}>Request</Link>
                             </div>

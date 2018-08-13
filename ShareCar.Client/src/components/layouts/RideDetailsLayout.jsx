@@ -13,19 +13,19 @@ type RideDetailsLayoutProps = {
 type RideDetailsLayoutState = {
     isLoading: boolean,
     rides: Ride[],
-    role: Roles
+    role: Role
 };
 
 export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, RideDetailsLayoutState> {
     state = {
         isLoading: true,
-        rides: [],
-        role: "DRIVER"
+        rides: []
     };
 
     rideService = new RestRideService();
 
     async componentDidMount() {
+        this.setState({role : this.props.match.params.role})
         const data = await this.rideService.getSingle(this.props.match.params.id);
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, rides: data});
@@ -46,20 +46,20 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
                 {
                                 (() => {
                                     switch (this.state.role){
-                                        case "DRIVER": return <div className="gen-flex-column-container">
+                                        case Roles.DRIVER: return <div className="gen-flex-column-container">
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.passenger.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.passenger.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.passenger.phoneNo}</div>                                            
                                             <button className="gen-flex-column-items gen-button">Accept request</button>
                                             <button className="gen-flex-column-items gen-button">Decline request</button>
                                         </div>;
-                                        case "PASSENGER": return <div className="gen-flex-column-container">
+                                        case Roles.PASSENGER: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">{this.state.rides.driver.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.driver.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.driver.phoneNo}</div>
                                             <button className="gen-flex-column-items gen-button">Cancel request</button>
                                             </div>;
-                                        case "ADMIN": return <div className="gen-flex-column-container">
+                                        case Roles.ADMIN: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">Driver: {this.state.rides.driver.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.driver.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.rides.driver.phoneNo}</div>
