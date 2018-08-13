@@ -4,6 +4,7 @@ import * as React from "react";
 import {RideRequestMap} from "../RideRequest/RideRequestMap";
 import {RideRequestSuccess} from "../RideRequest/RideRequestSuccess";
 import {NavBar} from "../NavigationBar/NavBar";
+import "../../styles/genericStyles.css";
 
 type RideRequestLayoutProps = {
     match: any;
@@ -38,7 +39,9 @@ export class RideRequestLayout extends React.Component<RideRequestLayoutProps, R
                         </div>);
             case 2:
                 return (<div>
+                            <div className="gen-container">
                             <RideRequestSuccess/>
+                            </div>
                             <NavBar/>
                         </div>);
         }

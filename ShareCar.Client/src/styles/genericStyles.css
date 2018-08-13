@@ -59,3 +59,18 @@
     align-self: center;
     text-align: center;
 }
+
+.gen-far-big-buttons {
+    margin: 50px;
+    align-self: center;
+    justify-self: center;
+    font-family: 'Lato', sans-serif;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 20px 40px !important;
+    margin-top: 130px;
+}

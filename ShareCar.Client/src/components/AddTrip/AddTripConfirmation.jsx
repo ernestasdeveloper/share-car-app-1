@@ -52,7 +52,6 @@ export class AddTripConfirmation extends React.Component<AddTripConfirmationProp
                 <div className="gen-flex-column-item gen-txt-center-imp">
                     Are you sure you want to schedule your trip {this.destination} for <Moment date={this.props.fieldValues.dateTime} format="D MMMM HH:mm" />?
                 </div>
-                <div className="gen-flex-column-item gen-txt-center-imp">Driver ID: {this.props.fieldValues.driverId}</div>
                 <button className="gen-button gen-flex-column-item" onClick={this.props.submitTrip.bind(this)}>Submit</button>
             </div>
         );

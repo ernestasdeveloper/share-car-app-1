@@ -184,7 +184,7 @@ export class RideRequestMap extends React.Component<RideRequestMapProps, RideReq
     render() {
         return (
             <div>
-                <div className="gen-map-container" id="map"></div>
+                <div id="map"></div>
                 <div id="msg"></div>
                 <div className="map-buttons-container">
                     <button className="gen-button btn-lg" onClick={this.submitRide.bind(this)}>Submit request</button>

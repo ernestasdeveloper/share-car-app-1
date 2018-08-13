@@ -5,7 +5,6 @@
     grid-template-rows: auto;
     grid-template-areas:
     "dinfo dinfo"
-    "driverid thisdriverid"
     "fname userfname"
     "lname userlname"
     "phonenr userphonenr"
@@ -28,14 +27,6 @@
     font-weight: bold;
     font-size: 13px;
     font-family: 'Open Sans', sans-serif;
-}
-
-.details-item-did {
-    grid-area: driverid;
-}
-
-.details-item-tdid {
-    grid-area: thisdriverid;
 }
 
 .details-item-a {
