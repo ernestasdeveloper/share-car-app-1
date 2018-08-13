@@ -53,7 +53,7 @@ public class RideApi {
         }
     }
 
-    @PatchMapping(path = "/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity patch(@PathVariable(name = "id") Long id,
                                 @RequestBody UpdateRideRequest updateRideRequest){
         rideService.patch(id, updateRideRequest);

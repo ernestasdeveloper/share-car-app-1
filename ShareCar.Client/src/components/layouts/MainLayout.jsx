@@ -2,7 +2,6 @@
 import * as React from "react";
 import { NavBar } from "../NavigationBar/NavBar";
 import "../../styles/genericStyles.css";
-import {Roles} from "../../utils/constants";
 
 type MainLayoutProps = {
     toRender: React.Component<>
