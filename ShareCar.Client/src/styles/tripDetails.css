@@ -66,9 +66,11 @@
 
 .details-item-rides {
     grid-area: rides;
+    margin: 3px;
 }
 .details-item-request {
     grid-area: request;
+    margin: 3px;
 }
 
 .details-container-form {
@@ -77,7 +79,6 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-    "pinfo pinfoinput"
     "rides request";
     background-color: transparent;
 }

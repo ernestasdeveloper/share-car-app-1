@@ -44,32 +44,13 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                     <NavBar/>
                     <div className="trip-details-container gen-container">
                         <div className="trip-details">
-                            <table className="table">
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">Trip ID</th>
-                                        <td>{this.state.trip.id}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">From</th>
-                                        <td>{this.state.trip.startPoint.name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">To</th>
-                                        <td>{this.state.trip.endPoint.name}</td>
-                                    </tr>
-                                    <tr>
-                                        <th schope="row">Date</th>
-                                        <td><Moment date={this.state.trip.dateTime} format="YYYY-MM-DD"/></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Time</th>
-                                        <td><Moment date={this.state.trip.dateTime} format="HH:mm"/></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="details-driver-container">
+                            <div className="gen-flex-column-container">
+                                        <div className="gen-flex-column-items gen-txt">Trip ID: {this.state.trip.id}</div>
+                                        <div className="gen-flex-column-items gen-txt">From: {this.state.trip.startPoint.name}</div>
+                                        <div className="gen-flex-column-items gen-txt">To: {this.state.trip.endPoint.name}</div>
+                                        <div className="gen-flex-column-items gen-txt">Date: <Moment date={this.state.trip.dateTime} format="YYYY-MM-DD"/></div>
+                                        <div className="gen-flex-column-items gen-txt">Time: <Moment date={this.state.trip.dateTime} format="HH:mm"/></div>
+                                        <div className="details-driver-container gen-flex-column-items">
                             <div className="details-item-dinfo">Driver info</div>
                             <div className="details-item details-item-did">Driver id</div>
                             <div className="details-item details-item-tdid">{this.state.trip.driver.id}</div>
@@ -79,9 +60,14 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                             <div className="details-item details-item-d">{this.state.trip.driver.lastName}</div>
                             <div className="details-item details-item-g">Phone number</div>
                             <div className="details-item details-item-h">{this.state.trip.driver.phoneNo}</div>
-                            <Link className="details-item details-item-ride gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
+                            <div className="details-container-form">
+                            <Link className="details-item details-item-rides gen-button" to={"/trips/" + this.props.match.params.id + "/rides"}>Rides</Link>
                             <Link className="details-item details-item-request gen-button" to={"/trips/request/" + this.props.match.params.id}>Request</Link>
+                            </div>
                         </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             );

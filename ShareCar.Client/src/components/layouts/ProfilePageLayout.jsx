@@ -44,7 +44,7 @@ export class ProfilePageLayout extends React.Component<ProfilePageLayoutProps, P
                     <div className="profile-item" id="phone-no">
                     {this.state.user.phoneNo}
                     </div>
-                        <Link to={"/profile/edit/" + this.state.user.id} className="profile-item" ><button className="gen-button">Edit</button></Link>
+                        <Link to={"/profile/edit/" + this.state.user.id} className="profile-item"><button className="gen-button" disabled={this.state.isLoading}>Edit</button></Link>
                     <div className="profile-stats-container">
                         <div className="profile-stats-item profile-stats-a">
                             Statistics:
