@@ -5,7 +5,7 @@ import {AddTripDatesTimesForm} from "../AddTrip/AddTripDatesTimesForm";
 import {AddTripSuccess} from "../AddTrip/AddTripSuccess";
 import {AddTripConfirmation} from "../AddTrip/AddTripConfirmation";
 import {AddTripFromToForm} from "../AddTrip/AddTripFromToForm";
-import {MapLayout} from "../MapLayout";
+import {AddTripMapLayout} from "../AddTrip/AddTripMapLayout";
 
 type AddTripLayoutState = {
     step: number,
@@ -98,7 +98,7 @@ export class AddTripLayout extends React.Component<{}, AddTripLayoutState> {
                                           previousStep={this.previousStep.bind(this)}
                                           saveValues={this.saveValues.bind(this)}/>
             case 3:
-                return <MapLayout fieldValues={this.state.fieldValues}
+                return <AddTripMapLayout fieldValues={this.state.fieldValues}
                                     nextStep={this.nextStep.bind(this)}
                                     previousStep={this.previousStep.bind(this)}
                                     saveValues={this.saveValues.bind(this)}/>
