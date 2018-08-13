@@ -61,7 +61,7 @@ export class EditProfileLayout extends React.Component<EditProfileLayoutProps, E
                     <input className="edit-item edit-item-f" type="text" name="email" defaultValue={this.state.user.email}/>
                     <label className="edit-item edit-item-g" htmlFor="phoneNo">Phone: </label>
                     <input className="edit-item edit-item-h" type="text" name="phoneNo" defaultValue={this.state.user.phoneNo}/>
-                    <input className="gen-button edit-item-btn" type="submit" value="Submit"/>
+                    <input className="gen-button edit-item-btn" type="submit" disabled={this.state.isLoading} value="Submit"/>
                     </div>
                 </form>
                 {this.state.redirect && (

@@ -33,6 +33,7 @@ export class TripSearchForm extends React.Component<{}, TripSearchFormState> {
                 { console.log("selectedDay sliced "+ this.state.selectedDay.toISOString().slice(0, 10)) }
                 <Link to={"/trips/" + this.state.selectedDay.toISOString().slice(0, 10)}><button className="gen-button">Search</button></Link>
                 <Link to="/trips"><button className="gen-button">View all</button></Link>
+                <Link to="/trips/new"><button className="gen-button">Create new</button></Link>
             </div>
         );
     }

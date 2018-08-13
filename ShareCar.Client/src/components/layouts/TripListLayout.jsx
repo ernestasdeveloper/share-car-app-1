@@ -5,6 +5,7 @@ import {RestTripService} from "../../api/RestTripService";
 import {TripContainer} from "../Trip/TripContainer";
 import "../../styles/TripContainer.css";
 import "../../styles/genericStyles.css";
+import { Link } from "react-router-dom";
 
 type TripListLayoutProps = {
     match: any
@@ -35,7 +36,8 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
         return (
             <div>
                 <NavBar/>
-                <div className="trip-container gen-container">
+                <div className="gen-container">
+                <div className="trip-container">
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
@@ -58,6 +60,8 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
                         }
                         </tbody>
                     </table>
+                    </div>
+                    <Link to="/trips/new"><button className="gen-button">Create new</button></Link>
                 </div>
             </div>
         );
