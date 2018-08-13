@@ -76,20 +76,38 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
                         <div className="gen-flex-column-items gen-txt">From: {this.state.ride.trip.startPointName}</div>
                         <div className="gen-flex-column-items gen-txt">To: {this.state.ride.trip.endPointName}</div>
                         <div className="gen-flex-column-items gen-txt"><Moment date={this.state.ride.trip.dateTime} format="MM-DD HH:mm" /></div>
-                    </div> 
+                    </div>
                 {
                                 (() => {
                                     switch (this.state.role){
                                         case Roles.DRIVER: return <div className="gen-flex-column-container">
                                             <div className="gen-flex-column-items gen-txt">Passenger: {this.state.ride.passenger.firstName} {this.state.ride.passenger.lastName}</div>
-                                            <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.phoneNo}</div>                                            
-                                            <button className="gen-flex-column-items gen-button" onClick={this.acceptRequest.bind(this)}>Accept request</button>
-                                            <button className="gen-flex-column-items gen-button" onClick={this.declineRequest.bind(this)}>Decline request</button>
+                                            <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.phoneNo}</div>
+                                            {(()=>{
+                                                switch(this.state.ride.status){
+                                                    case RideStatusValues.REQUEST_ACCEPTED: return <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>;
+                                                    case RideStatusValues.REQUEST_DECLINED: return;
+                                                    case RideStatusValues.REQUEST_CANCELLED: return;
+                                                    default: return <div>
+                                                    <button className="gen-flex-column-items gen-button" onClick={this.acceptRequest.bind(this)}>Accept request</button>
+                                                    <button className="gen-flex-column-items gen-button" onClick={this.declineRequest.bind(this)}>Decline request</button>
+                                                    </div>;
+                                                }
+                                                })()
+                                            }
                                         </div>;
                                         case Roles.PASSENGER: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">Driver: {this.state.ride.driver.firstName} {this.state.ride.driver.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.driver.phoneNo}</div>
-                                            <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>
+                                            {(()=>{
+                                                switch(this.state.ride.status){
+                                                    case RideStatusValues.REQUEST_ACCEPTED: return <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>;
+                                                    case RideStatusValues.REQUEST_DECLINED: return;
+                                                    case RideStatusValues.REQUEST_CANCELLED: return;
+                                                    default: return <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>;
+                                                }
+                                                })()
+                                            }
                                             </div>;
                                         case Roles.ADMIN: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">Driver: {this.state.ride.driver.firstName} {this.state.ride.driver.lastName}</div>
