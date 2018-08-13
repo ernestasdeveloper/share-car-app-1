@@ -8,24 +8,23 @@ import Moment from "react-moment";
 
 type RideContainerProps = {
     ride: Ride,
+    role: Role
 };
 
 type RideContainerState = {
-    redirect: boolean,
-    role: Roles
+    redirect: boolean
 }
 
 export class RideContainer extends React.Component<RideContainerProps, RideContainerState> {
     state = {
-        redirect: false,
-        role: "DRIVER"
+        redirect: false
     }
     handleOnClick = () => {
         this.setState({redirect: true});
     }
     render() {
         if (this.state.redirect) {
-            return <Redirect push to={"/rides/" + this.props.ride.id + "/details"}/> //TODO: add proper link
+            return <Redirect push to={"/rides/" + this.props.role + "/" + this.props.ride.id + "/details"}/> //TODO: add proper link
         }
         return (
             <tr onClick={this.handleOnClick.bind(this)}>
@@ -46,10 +45,10 @@ export class RideContainer extends React.Component<RideContainerProps, RideConta
                             <td className="gen-txt">
                             {
                                 (() => {
-                                    switch (this.state.role){
-                                        case "DRIVER": return <div>{this.props.ride.passenger.firstName} {this.props.ride.passenger.lastName}</div>;
-                                        case "PASSENGER": return <div>{this.props.ride.driver.firstName} {this.props.ride.driver.lastName}</div>;
-                                        case "ADMIN": return <div>{this.props.ride.driver.firstName} {this.props.ride.driver.lastName} {this.props.ride.passenger.firstName} {this.props.ride.passenger.lastName}</div>;
+                                    switch (this.props.role){
+                                        case Roles.DRIVER: return <div>{this.props.ride.passenger.firstName} {this.props.ride.passenger.lastName}</div>;
+                                        case Roles.PASSENGER: return <div>{this.props.ride.driver.firstName} {this.props.ride.driver.lastName}</div>;
+                                        case Roles.ADMIN: return <div>{this.props.ride.driver.firstName} {this.props.ride.driver.lastName} {this.props.ride.passenger.firstName} {this.props.ride.passenger.lastName}</div>;
                                         default: return "Error";
                                     }
                                 })()

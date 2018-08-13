@@ -28,15 +28,15 @@ class App extends React.Component<{}> {
                         <Route name="passenger_main" exact path="/passenger" render={() => <MainLayout role={Roles.PASSENGER}/>}/>
                         <Route name="driver_main" exact path="/driver" render={() => <MainLayout role={Roles.DRIVER}/>}/>
                         <Route name="trip_details" exact path="/trips/details/:id" render={props => <TripDetailsLayout {...props}/>}/>
-                        <Route name="ride_request" exact path="/trips/request/:id" render={props => <RideRequestLayout {...props}/>}/>
+                        <Route name="ride_request" exact path="/trips/request/:trip_id/:passenger_id" render={props => <RideRequestLayout {...props}/>}/>
                         <Route name="trip_search" exact path="/trips/search" render={() => <TripSearchLayout/>}/>
                         <Route name="new_trip" exact path="/trips/new" render={() => <MainLayout toRender={ AddTripLayout }/>}/>
                         <Route name="trips" exact path="/trips/:date?" render={props => <TripListLayout {...props}/>}/>
-                        <Route name="trip_rides" path="/trips/:id/rides" render={props => <RideListLayout {...props}/>}/>
+                        <Route name="trip_rides" path="/trips/:id/rides/:role" render={props => <RideListLayout {...props}/>}/>
                         <Route name="profile_edit" path="/profile/edit/:id" render={props => <EditProfileLayout {...props}/>}/>
                         <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props}/>}/>
-                        <Route name="rides_details" exact path="/rides/:id/details" render={props => <RideDetailsLayout {...props}/>}/>
-                        <Route name="rides" exact path="/rides/:passenger" render={props => <RideListLayout {...props}/>}/>
+                        <Route name="rides_details" exact path="/rides/:role/:id/details" render={props => <RideDetailsLayout {...props}/>}/>
+                        <Route name="rides" exact path="/rides/:role" render={props => <RideListLayout {...props}/>}/>
                         <Route name="map" path="/map" render={() => <MapLayout/>}/>
                     </Switch>
                 </Router>

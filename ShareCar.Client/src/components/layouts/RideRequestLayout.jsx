@@ -1,20 +1,46 @@
 //@flow
 
 import * as React from "react";
-import {MapRideRequest} from "../maps/MapRideRequest";
+import {RideRequestMap} from "../RideRequest/RideRequestMap";
+import {RideRequestSuccess} from "../RideRequest/RideRequestSuccess";
 import {NavBar} from "../NavigationBar/NavBar";
 
 type RideRequestLayoutProps = {
     match: any;
 }
 
-export class RideRequestLayout extends React.Component<RideRequestLayoutProps> {
+type RideRequestLayoutState = {
+    step: number
+}
+
+export class RideRequestLayout extends React.Component<RideRequestLayoutProps, RideRequestLayoutState> {
+
+    state = {
+        step: 1
+    };
+
+    nextStep() {
+        this.setState({
+            step: this.state.step + 1
+        });
+    };
+    
     render() {
-        return (
-            <div>
-                <MapRideRequest tripId={this.props.match.params.id}/>
-                <NavBar/>
-            </div>
-        );
+        switch (this.state.step) {
+            default:
+                return "Something has gone wrong";
+            case 1:
+                return (<div>
+                            <RideRequestMap tripId={this.props.match.params.trip_id}
+                                            passengerId={this.props.match.params.passenger_id}
+                                            nextStep={this.nextStep.bind(this)}/>
+                            <NavBar/>
+                        </div>);
+            case 2:
+                return (<div>
+                            <RideRequestSuccess/>
+                            <NavBar/>
+                        </div>);
+        }
     }
 }

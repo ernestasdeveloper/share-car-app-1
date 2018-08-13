@@ -9,7 +9,7 @@ import { Roles } from "../../utils/constants";
 type RideListLayoutState = {
     isLoading: boolean,
     rides: Ride[],
-    role: Roles
+    role: Role
 };
 
 export class RideListLayout extends React.Component<RideListLayoutProps, RideListLayoutState> {
@@ -17,11 +17,17 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
     state = {
         isLoading: true,
         rides: [],
-        role: "DRIVER"
     };
     async componentDidMount() {
-        const data = await this.rideService.getAll(this.props.match.params.id, this.props.match.params.passenger);
+        this.setState({role : this.props.match.params.role})
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+        var data;
+        if(this.state.role === Roles.DRIVER){
+            data = await this.rideService.getAll(this.props.match.params.id,undefined,1)
+        }
+        else if(this.state.role == Roles.PASSENGER){
+            data = await this.rideService.getAll(this.props.match.params.id,2,undefined);
+        } 
         this.setState({isLoading: false, rides: data});
         console.log(this.state.rides);
     }
@@ -39,9 +45,9 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
                             {
                                 (() => {
                                     switch (this.state.role){
-                                        case "DRIVER": return "Passenger";
-                                        case "PASSENGER": return "Driver";
-                                        case "ADMIN": return "Driver & Passenger";
+                                        case Roles.DRIVER: return "Passenger";
+                                        case Roles.PASSENGER: return "Driver";
+                                        case Roles.ADMIN: return "Driver & Passenger";
                                         default: return "Error";
                                     }
                                 })()
@@ -51,7 +57,7 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
                         </thead>
                         <tbody>
                         {this.state.rides.map((x, i) =>
-                            <RideContainer key={i}
+                            <RideContainer role={this.state.role} key={i}
                                 ride={x}
                                 />)
                         }
