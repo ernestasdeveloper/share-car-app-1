@@ -8,15 +8,15 @@ import {Style, Stroke, Icon} from "ol/style";
 import {Point} from "ol/geom";
 import {Polyline} from "ol/format";
 import {fromLonLat, transform} from "ol/proj";
-import "../styles/map.css";
-import "../styles/genericStyles.css";
+import "../../styles/map.css";
+import "../../styles/genericStyles.css";
 import "ol/ol.css";
-import {RestMapService} from "../api/RestMapService";
+import {RestMapService} from "../../api/RestMapService";
 import * as Geocoder from "ol-geocoder";
 import "ol-geocoder/dist/ol-geocoder.min.css";
-import {Offices} from "../utils/constants";
+import {Offices} from "../../utils/constants";
 
-type MapLayoutProps = {
+type AddTripMapLayoutProps = {
     fieldValues: {
         dateTime: string,
         driverId: UserId,
@@ -39,12 +39,12 @@ type MapLayoutProps = {
     saveValues: Function
 }
 
-type MapLayoutState = {
+type AddTripMapLayoutState = {
     points: Waypoint[],
     geometry: Geometry
 }
 
-export class MapLayout extends React.Component<MapLayoutProps, MapLayoutState> {
+export class AddTripMapLayout extends React.Component<AddTripMapLayoutProps, AddTripMapLayoutState> {
     map: Map;
     geocoder: Geocoder;
 

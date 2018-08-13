@@ -8,7 +8,6 @@ import {TripDetailsLayout} from "./components/layouts/TripDetailsLayout";
 import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom";
 import { TripSearchLayout } from "./components/layouts/TripSearchLayout";
 import { ProfilePageLayout } from "./components/layouts/ProfilePageLayout";
-import { MapLayout } from "./components/MapLayout";
 import { EditProfileLayout } from "./components/layouts/EditProfileLayout";
 import {RideListLayout} from "./components/layouts/RideListLayout";
 import {RoleSelectionLayout} from "./components/layouts/RoleSelectionLayout";
@@ -37,7 +36,6 @@ class App extends React.Component<{}> {
                         <Route name="profile" path="/profile/:id" render={props => <ProfilePageLayout {...props}/>}/>
                         <Route name="rides_details" exact path="/rides/:role/:id/details" render={props => <RideDetailsLayout {...props}/>}/>
                         <Route name="rides" exact path="/rides/:role" render={props => <RideListLayout {...props}/>}/>
-                        <Route name="map" path="/map" render={() => <MapLayout/>}/>
                     </Switch>
                 </Router>
             </div>
