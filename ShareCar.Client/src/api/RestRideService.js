@@ -42,4 +42,11 @@ export class RestRideService implements RideService {
         }
         return data.value;
     }
+
+    async updateStatus(rideId: RideId, item: UpdateRideRequest) {
+        const data: ApiResponse<> = await fetchData("PUT", buildUrl("/rides/" + rideId), item);
+        if (data.isError) {
+            throw new Error();
+        }
+    }
 }

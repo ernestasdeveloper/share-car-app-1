@@ -9,3 +9,7 @@ type AddRideRequest = {
 type AddRideResponse = {
     id: RideId
 };
+
+type UpdateRideRequest = {
+    status: RideStatus
+}

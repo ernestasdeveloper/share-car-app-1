@@ -6,6 +6,8 @@ import "../../styles/genericStyles.css";
 import { RestRideService } from "../../api/RestRideService";
 import { Roles } from "../../utils/constants";
 import { RideDetailsMap } from "./RideDetailsMap";
+import {RideStatusValues} from "../../utils/constants"
+import {Redirect} from "react-router-dom";
 
 type RideDetailsLayoutProps = {
     rideService: RideService
@@ -14,15 +16,35 @@ type RideDetailsLayoutProps = {
 type RideDetailsLayoutState = {
     isLoading: boolean,
     ride: Ride,
-    role: Role
+    role: Role,
+    redirect: boolean
 };
 
 export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, RideDetailsLayoutState> {
     state = {
-        isLoading: true
+        isLoading: true,
+        redirect: false
     };
 
     rideService = new RestRideService();
+
+    async acceptRequest() {
+        await this.rideService.updateStatus(this.props.match.params.id, {status: RideStatusValues.REQUEST_ACCEPTED});
+        await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+        this.setState({redirect: true});
+    }
+
+    async declineRequest() {
+        await this.rideService.updateStatus(this.props.match.params.id, {status: RideStatusValues.REQUEST_DECLINED});
+        await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+        this.setState({redirect: true});
+    }
+
+    async cancelRequest() {
+        await this.rideService.updateStatus(this.props.match.params.id, {status: RideStatusValues.REQUEST_CANCELLED});
+        await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
+        this.setState({redirect: true});
+    }
 
     async componentDidMount() {
         this.setState({role : this.props.match.params.role})
@@ -32,6 +54,14 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
         console.log(this.state.ride);
     }
     render() {
+        if (this.state.redirect) {
+            if (this.state.role === Roles.DRIVER) {
+                return <Redirect push to="/rides/driver"/>
+            }
+            else if (this.state.role === Roles.PASSENGER) {
+                return <Redirect push to="/rides/passenger"/>
+            }
+        }
         if (this.state.isLoading) return (<div><NavBar/><div className="gen-txt-center-imp gen-container">Loading</div></div>);
         return (
             <div>
@@ -53,14 +83,14 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.phoneNo}</div>                                            
-                                            <button className="gen-flex-column-items gen-button">Accept request</button>
-                                            <button className="gen-flex-column-items gen-button">Decline request</button>
+                                            <button className="gen-flex-column-items gen-button" onClick={this.acceptRequest.bind(this)}>Accept request</button>
+                                            <button className="gen-flex-column-items gen-button" onClick={this.declineRequest.bind(this)}>Decline request</button>
                                         </div>;
                                         case Roles.PASSENGER: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">{this.state.ride.driver.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.driver.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.driver.phoneNo}</div>
-                                            <button className="gen-flex-column-items gen-button">Cancel request</button>
+                                            <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>
                                             </div>;
                                         case Roles.ADMIN: return <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">Driver: {this.state.ride.driver.firstName}</div>
@@ -69,9 +99,9 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
                                          <div className="gen-flex-column-items gen-txt">Passenger: {this.state.ride.passenger.firstName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.lastName}</div>
                                             <div className="gen-flex-column-items gen-txt">{this.state.ride.passenger.phoneNo}</div>
-                                            <button className="gen-flex-column-items gen-button">Accept request</button>
-                                        <button className="gen-flex-column-items gen-button">Decline request</button>
-                                        <button className="gen-flex-column-items gen-button">Cancel request</button>
+                                            <button className="gen-flex-column-items gen-button" onClick={this.acceptRequest.bind(this)}>Accept request</button>
+                                        <button className="gen-flex-column-items gen-button" onClick={this.declineRequest.bind(this)}>Decline request</button>
+                                        <button className="gen-flex-column-items gen-button" onClick={this.cancelRequest.bind(this)}>Cancel request</button>
                                         </div>;
                                         default: return "Error";
                                     }

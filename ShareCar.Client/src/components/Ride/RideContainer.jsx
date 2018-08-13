@@ -2,7 +2,6 @@
 import * as React from "react";
 import "../../styles/genericStyles.css";
 import { Redirect } from "react-router-dom";
-import { RideStatusValues } from "../../utils/constants";
 import { Roles } from "../../utils/constants";
 import Moment from "react-moment";
 

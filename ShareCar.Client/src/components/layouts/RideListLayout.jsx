@@ -25,7 +25,7 @@ export class RideListLayout extends React.Component<RideListLayoutProps, RideLis
         if(this.state.role === Roles.DRIVER){
             data = await this.rideService.getAll(this.props.match.params.id,undefined,1)
         }
-        else if(this.state.role == Roles.PASSENGER){
+        else if(this.state.role === Roles.PASSENGER){
             data = await this.rideService.getAll(this.props.match.params.id,2,undefined);
         } 
         this.setState({isLoading: false, rides: data});

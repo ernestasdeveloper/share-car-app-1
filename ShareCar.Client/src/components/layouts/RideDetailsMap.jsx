@@ -6,7 +6,6 @@ import {Vector, OSM} from "ol/source";
 import {Vector as VectorLayer, Tile} from "ol/layer";
 import {Style, Stroke, Icon} from "ol/style";
 import {Point} from "ol/geom";
-import {Polyline} from "ol/format";
 import {fromLonLat, transform} from "ol/proj";
 import "../../styles/rideMap.css";
 import "../../styles/genericStyles.css";
