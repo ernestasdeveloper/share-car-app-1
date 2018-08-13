@@ -2,7 +2,8 @@
 
 type AddRideRequest = {
    passengerId: UserId,
-   tripId: TripId
+   tripId: TripId,
+   pickupPoint: Waypoint
 };
 
 type AddRideResponse = {

@@ -13,12 +13,16 @@ import "../../styles/genericStyles.css";
 import "ol/ol.css";
 import {RestMapService} from "../../api/RestMapService";
 import {RestTripService} from "../../api/RestTripService";
+import {RestRideService} from "../../api/RestRideService";
+import {RideService} from "../../api/RideService";
 
-type MapRideRequestProps = {
-    tripId: number
+type RideRequestMapProps = {
+    tripId: number,
+    passengerId: number,
+    nextStep: Function
 }
 
-type MapRideRequestState = {
+type RideRequestMapState = {
     pickupPoint: Waypoint,
     trip: {
         id: TripId,
@@ -43,12 +47,14 @@ type MapRideRequestState = {
     },
 }
 
-export class MapRideRequest extends React.Component<MapRideRequestProps, MapRideRequestState> {
+export class RideRequestMap extends React.Component<RideRequestMapProps, RideRequestMapState> {
     map: Map;
 
     state = {
         pickupPoint: null
     };
+
+    rideService: RideService = new RestRideService();
 
     msg_el: element;
     url_osrm_route: string;
@@ -82,7 +88,10 @@ export class MapRideRequest extends React.Component<MapRideRequestProps, MapRide
             return;
         }
         let coord4326 = this.to4326(coord);
-        this.setState({pickupPoint: coord4326});
+        this.setState({pickupPoint: {
+                        longitude: coord4326[0],
+                        latitude: coord4326[1],
+                        name: ""}});
         this.createFeature(coord4326);
     }
 
@@ -118,6 +127,14 @@ export class MapRideRequest extends React.Component<MapRideRequestProps, MapRide
         await new Promise(resolve => setTimeout(resolve, 1000)); //sleep 1000ms
         this.setState({isLoading: false, trip: data});
     }
+
+    async submitRide() {
+        await this.rideService.add({passengerId: this.props.passengerId,
+                                    tripId: this.props.tripId,
+                                    pickupPoint: this.state.pickupPoint
+        });
+        this.props.nextStep();
+    };
 
     async componentDidMount() {
         await this.loadTrip();
@@ -170,7 +187,7 @@ export class MapRideRequest extends React.Component<MapRideRequestProps, MapRide
                 <div className="gen-map-container" id="map"></div>
                 <div id="msg"></div>
                 <div className="map-buttons-container">
-                    <button className="gen-button btn-lg">Submit request</button>
+                    <button className="gen-button btn-lg" onClick={this.submitRide.bind(this)}>Submit request</button>
                 </div>
             </div>
         );
