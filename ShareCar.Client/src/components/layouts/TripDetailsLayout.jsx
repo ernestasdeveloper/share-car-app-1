@@ -8,6 +8,7 @@ import { RestRideService } from "../../api/RestRideService";
 import { RestTripService } from "../../api/RestTripService";
 import "../../styles/genericStyles.css";
 import "../../styles/tripDetails.css";
+import {TripDetailsMap} from "./TripDetailsMap";
 
 type TripDetailsLayoutProps = {
     tripId: TripId
@@ -44,6 +45,11 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                     <NavBar/>
                     <div className="trip-details-container gen-container">
                         <div className="trip-details">
+                            <div className="gen-flex-column-container">
+                                <TripDetailsMap geometry={this.state.trip.route}
+                                                startPoint={this.state.trip.startPoint}
+                                                endPoint={this.state.trip.endPoint}/>
+                            </div>
                             <div className="gen-flex-column-container">
                                         <div className="gen-flex-column-items gen-txt">Trip ID: {this.state.trip.id}</div>
                                         <div className="gen-flex-column-items gen-txt">From: {this.state.trip.startPoint.name}</div>
