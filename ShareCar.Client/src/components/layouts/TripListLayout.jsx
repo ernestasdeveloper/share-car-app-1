@@ -61,7 +61,7 @@ export class TripListLayout extends React.Component<TripListLayoutProps, TripLis
                         </tbody>
                     </table>
                     </div>
-                    <Link to="/trips/new"><button className="gen-button">Create new</button></Link>
+                    <Link to="/trips/new"><button className="trip-new-button gen-button">Create new</button></Link>
                 </div>
             </div>
         );

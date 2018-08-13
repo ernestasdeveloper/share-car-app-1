@@ -1,5 +1,6 @@
 .details-driver-container {
     display: grid;
+    padding: 10px 30px;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
@@ -62,23 +63,4 @@
 }
 .details-item-pi {
     grid-area: pinfoinput;
-}
-
-.details-item-rides {
-    grid-area: rides;
-    margin: 3px;
-}
-.details-item-request {
-    grid-area: request;
-    margin: 3px;
-}
-
-.details-container-form {
-    grid-area: form;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "rides request";
-    background-color: transparent;
 }

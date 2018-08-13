@@ -36,11 +36,6 @@
     padding: 5px 10px;
 }
 
-.gen-button:hover {
-    background-color: white;
-    color: black;
-}
-
 .gen-flex-column-container {
     display: flex;
     flex-direction: column;

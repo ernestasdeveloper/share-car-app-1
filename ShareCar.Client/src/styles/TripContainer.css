@@ -47,3 +47,11 @@ td.trip-text {
     letter-spacing: 0.5px;
     border: none;
 }
+
+.trip-new-button {
+        align-self: flex-end;
+        overflow: hidden;
+        position: fixed;
+        bottom: 50px;
+        left: 3px;
+}
