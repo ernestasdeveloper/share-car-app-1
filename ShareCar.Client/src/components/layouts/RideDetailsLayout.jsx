@@ -72,7 +72,20 @@ export class RideDetailsLayout extends React.Component<RideDetailsLayoutProps, R
                         <RideDetailsMap pickupPoint={this.state.ride.pickupPoint}/>
                     </div>
                     <div className="gen-flex-column-container">
-                        <div className="gen-flex-column-items gen-txt">{this.state.ride.status}</div>
+                        <div className="gen-flex-column-items gen-txt">{
+                                (() => {
+                                    switch (this.state.ride.status){
+                                        case "REQUEST_PENDING": return "Request pending";
+                                        case "REQUEST_ACCEPTED": return "Request accepted";
+                                        case "REQUEST_DECLINED": return "Request declined";
+                                        case "REQUEST_CANCELLED": return "Request cancelled";
+                                        case "RIDE_CANCELLED": return "Ride cancelled";
+                                        case "RIDE_SUCCESSFUL": return "Ride succesful";
+                                        case "RIDE_REMOVED": return "Ride removed";
+                                        default: return "Error";
+                                    }
+                                })()
+                            }</div>
                         <div className="gen-flex-column-items gen-txt">From: {this.state.ride.trip.startPointName}</div>
                         <div className="gen-flex-column-items gen-txt">To: {this.state.ride.trip.endPointName}</div>
                         <div className="gen-flex-column-items gen-txt"><Moment date={this.state.ride.trip.dateTime} format="MM-DD HH:mm" /></div>

@@ -51,7 +51,6 @@ export class TripDetailsLayout extends React.Component<TripDetailsLayoutProps, T
                                                 endPoint={this.state.trip.endPoint}/>
                             </div>
                             <div className="gen-flex-column-container">
-                                        <div className="gen-flex-column-items gen-txt">Trip ID: {this.state.trip.id}</div>
                                         <div className="gen-flex-column-items gen-txt">From: {this.state.trip.startPoint.name}</div>
                                         <div className="gen-flex-column-items gen-txt">To: {this.state.trip.endPoint.name}</div>
                                         <div className="gen-flex-column-items gen-txt">Date: <Moment date={this.state.trip.dateTime} format="YYYY-MM-DD"/></div>
